@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.FrameProperityMapper">
+
+    <insert id="addFrameProperity" parameterType="com.kaung.pogo.FrameProperity">
+        insert into t_frame_properity (dataset_id, classification_id, scene_id,create_person,create_time,path,target_id) values (#{dataset_id},#{classification_id},#{scene_id},#{create_person},#{create_time},#{path},#{target_id})
+    </insert>
+
+    <delete id="deleteFrameProperityById" parameterType="int">
+        delete from t_frame_properity where id = #{id};
+    </delete>
+
+    <update id="updateFrameProperity" parameterType="com.kaung.pogo.FrameProperity">
+        update t_frame_properity set dataset_id=#{dataset_id} ,classification_id=#{classification_id},scene_id=#{scene_id},create_person=#{create_person},create_time=#{create_time},path=#{path},target_id=#{target_id}  where id =#{id}
+    </update>
+
+
+    <select id="queryFrameProperityById" resultType="com.kaung.pogo.FrameProperity">
+        select *from t_frame_properity where id=#{id}
+    </select>
+
+    <select id="queryAllFrameProperity" resultType="com.kaung.pogo.FrameProperity">
+        select * from t_frame_properity
+    </select>
+
+    <select id="queryFrameProperityByName" resultType="com.kaung.pogo.FrameProperity">
+        select * from t_frame_properity where dataset_id=#{dataset_id}
+    </select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.DatasetToClasscificationMapper">
+
+    <insert id="addDatasetToClasscification" parameterType="com.kaung.pogo.DatasetToClasscification">
+        insert into t_dataset_to_classcification (dataset_id, classcification_id) values (#{dataset_id},#{classcification_id})
+    </insert>
+
+    <delete id="deleteDatasetToClasscificationById" parameterType="int">
+        delete from t_dataset_to_classcification where id = #{id};
+    </delete>
+
+    <update id="updateDatasetToClasscification" parameterType="com.kaung.pogo.DatasetToClasscification">
+        update t_dataset_to_classcification set dataset_id=#{dataset_id} ,classcification_id=#{classcification_id} where id =#{id}
+    </update>
+
+
+    <select id="queryDatasetToClasscificationById" resultType="com.kaung.pogo.DatasetToClasscification">
+        select *from t_dataset_to_classcification where id=#{id}
+    </select>
+
+    <select id="queryAllDatasetToClasscification" resultType="com.kaung.pogo.DatasetToClasscification">
+        select * from t_dataset_to_classcification
+    </select>
+
+    <select id="queryDatasetToClasscificationByName" resultType="com.kaung.pogo.DatasetToClasscification">
+        select * from t_dataset_to_classcification where dataset_id=#{dataset_id}
+    </select>
+
+</mapper>

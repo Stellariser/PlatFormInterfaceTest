@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.RecursiveMapper">
+
+    <insert id="addRecursive" parameterType="com.kaung.pogo.Recursive">
+        insert into t_recursive (record_path, class_refer, scene_refer,user,use_time) values (#{record_path},#{class_refer},#{scene_refer},#{user},#{use_time})
+    </insert>
+
+    <delete id="deleteRecursiveById" parameterType="int">
+        delete from t_recursive where id = #{id};
+    </delete>
+
+    <update id="updateRecursive" parameterType="com.kaung.pogo.Recursive">
+        update t_recursive set record_path=#{record_path} ,class_refer=#{class_refer},scene_refer=#{scene_refer},user=#{user},use_time=#{use_time}  where id =#{id}
+    </update>
+
+
+    <select id="queryRecursiveById" resultType="com.kaung.pogo.Recursive">
+        select *from t_recursive where id=#{id}
+    </select>
+
+    <select id="queryAllRecursive" resultType="com.kaung.pogo.Recursive">
+        select * from t_recursive
+    </select>
+
+    <select id="queryRecursiveByName" resultType="com.kaung.pogo.Recursive">
+        select * from t_recursive where record_path=#{record_path}
+    </select>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.ClasscificationMapper">
+
+    <insert id="addClasscification" parameterType="com.kaung.pogo.Classcification">
+        insert into t_classcification (class_code, class_name, remarks, create_person,create_time) values (#{class_code},#{class_name},#{remarks},#{create_person},#{create_time})
+    </insert>
+
+    <delete id="deleteClasscificationById" parameterType="int">
+        delete from t_classcification where id = #{id};
+    </delete>
+
+    <update id="updateClasscification" parameterType="com.kaung.pogo.Classcification">
+        update t_classcification set class_code=#{class_code} ,class_name=#{class_name},remarks=#{remarks},create_person=#{create_person},create_time=#{create_time},  where id =#{id}
+    </update>
+
+
+    <select id="queryClasscificationById" resultType="com.kaung.pogo.Classcification">
+        select *from t_classcification where id=#{id}
+    </select>
+
+    <select id="queryAllClasscification" resultType="com.kaung.pogo.Classcification">
+        select * from t_classcification
+    </select>
+
+    <select id="queryClasscificationByName" resultType="com.kaung.pogo.Classcification">
+        select * from t_classcification where class_name=#{class_name}
+    </select>
+
+</mapper>

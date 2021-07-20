@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!--扫描service下的包-->
+    <context:component-scan base-package="com.kaung.service"/>
+    <!--将所有业务类注入到Spring，可以通过配置和注解实现-->
+
+    <bean id="UserServiceImpl" class="com.kaung.service.UserServiceImpl">
+        <property name="UserMapper" ref="userMapper"/>
+    </bean>
+    <bean id="ClasscificationServiceImpl" class="com.kaung.service.ClasscificationServiceImpl">
+        <property name="ClasscificationMapper" ref="classcificationMapper"/>
+    </bean>
+    <bean id="DatasetsServiceImpl" class="com.kaung.service.DatasetsServiceImpl">
+        <property name="DatasetsMapper" ref="datasetsMapper"/>
+    </bean>
+    <bean id="DatasetToClasscificationServiceImpl" class="com.kaung.service.DatasetToClasscificationServiceImpl">
+        <property name="DatasetToClasscificationMapper" ref="datasetToClasscificationMapper"/>
+    </bean>
+    <bean id="DatasetToSceneServiceImpl" class="com.kaung.service.DatasetToSceneServiceImpl">
+        <property name="DatasetToSceneMapper" ref="datasetToSceneMapper"/>
+    </bean>
+    <bean id="FrameLabelServiceImpl" class="com.kaung.service.FrameLabelServiceImpl">
+        <property name="FrameLabelMapper" ref="frameLabelMapper"/>
+    </bean>
+    <bean id="FrameProperityServiceImpl" class="com.kaung.service.FrameProperityServiceImpl">
+        <property name="FrameProperityMapper" ref="frameProperityMapper"/>
+    </bean>
+    <bean id="RecursiveServiceImpl" class="com.kaung.service.RecursiveServiceImpl">
+        <property name="RecursiveMapper" ref="recursiveMapper"/>
+    </bean>
+    <bean id="SceneServiceImpl" class="com.kaung.service.SceneServiceImpl">
+        <property name="SceneMapper" ref="sceneMapper"/>
+    </bean>
+    <bean id="TypeServiceImpl" class="com.kaung.service.TypeServiceImpl">
+        <property name="TypeMapper" ref="typeMapper"/>
+    </bean>
+
+
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+
+    <!--aop事务支持-->
+    <aop:config>
+        <aop:pointcut id="txPointCut" expression="execution(* com.kaung.mapper.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+    </aop:config>
+</beans>

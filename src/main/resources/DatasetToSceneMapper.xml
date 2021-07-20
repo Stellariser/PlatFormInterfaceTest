@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.DatasetToSceneMapper">
+
+    <insert id="addDatasetToScene" parameterType="com.kaung.pogo.DatasetToScene">
+        insert into t_dataset_to_scene (dataset_id, scene_id) values (#{dataset_id},#{scene_id})
+    </insert>
+
+    <delete id="deleteDatasetToSceneById" parameterType="int">
+        delete from t_dataset_to_scene where id = #{id};
+    </delete>
+
+    <update id="updateDatasetToScene" parameterType="com.kaung.pogo.DatasetToScene">
+        update t_dataset_to_scene set dataset_id=#{dataset_id} ,scene_id=#{scene_id} where id =#{id}
+    </update>
+
+
+    <select id="queryDatasetToSceneById" resultType="com.kaung.pogo.DatasetToScene">
+        select *from t_dataset_to_scene where id=#{id}
+    </select>
+
+    <select id="queryAllDatasetToScene" resultType="com.kaung.pogo.DatasetToScene">
+        select * from t_dataset_to_scene
+    </select>
+
+    <select id="queryDatasetToSceneByName" resultType="com.kaung.pogo.DatasetToScene">
+        select * from t_dataset_to_scene where dataset_id=#{dataset_id}
+    </select>
+
+</mapper>

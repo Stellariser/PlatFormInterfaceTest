@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.TypeMapper">
+
+    <insert id="addType" parameterType="com.kaung.pogo.Type">
+        insert into t_type (cam_id, type, effective_frames,create_person,create_time,update_person,update_time) values (#{cam_id},#{type},#{effective_frames},#{create_person},#{create_time},#{update_person},#{update_time})
+    </insert>
+
+    <delete id="deleteTypeById" parameterType="int">
+        delete from t_type where id = #{id};
+    </delete>
+
+    <update id="updateType" parameterType="com.kaung.pogo.Type">
+        update t_type set cam_id=#{cam_id} ,type=#{type},effective_frames=#{effective_frames},create_person=#{create_person},create_time=#{create_time},update_person=#{update_person},update_time=#{update_time}  where id =#{id}
+    </update>
+
+
+    <select id="queryTypeById" resultType="com.kaung.pogo.Type">
+        select *from t_type where id=#{id}
+    </select>
+
+    <select id="queryAllType" resultType="com.kaung.pogo.Type">
+        select * from t_type
+    </select>
+
+    <select id="queryTypeByName" resultType="com.kaung.pogo.Type">
+        select * from t_type where type=#{type}
+    </select>
+
+</mapper>

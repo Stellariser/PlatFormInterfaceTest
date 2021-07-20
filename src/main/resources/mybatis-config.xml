@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <mappers>
+        <mapper resource="UserMapper.xml"/>
+        <mapper resource="ClasscificationMapper.xml"/>
+        <mapper resource="DatasetsMapper.xml"/>
+        <mapper resource="DatasetToClasscificationMapper.xml"/>
+        <mapper resource="DatasetToSceneMapper.xml"/>
+        <mapper resource="FrameLabelMapper.xml"/>
+        <mapper resource="FrameProperityMapper.xml"/>
+        <mapper resource="RecursiveMapper.xml"/>
+        <mapper resource="SceneMapper.xml"/>
+        <mapper resource="TypeMapper.xml"/>
+    </mappers>
+
+</configuration>
