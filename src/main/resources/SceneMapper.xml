@@ -4,7 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kaung.mapper.SceneMapper">
-
+    <resultMap id="SceneResultMap" type="com.kaung.pogo.Scene">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="scene_name" jdbcType="VARCHAR"  property="scene_name"/>
+        <result column="remarks" jdbcType="VARCHAR"  property="remarks"/>
+        <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
+        <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
+    </resultMap>
     <insert id="addScene" parameterType="com.kaung.pogo.Scene">
         insert into t_scene (scene_name, remarks, create_person,create_time) values (#{scene_name},#{remarks},#{create_person},#{create_time})
     </insert>
@@ -18,16 +24,24 @@
     </update>
 
 
-    <select id="querySceneById" resultType="com.kaung.pogo.Scene">
+    <select id="querySceneById" resultMap="SceneResultMap">
         select *from t_scene where id=#{id}
     </select>
 
-    <select id="queryAllScene" resultType="com.kaung.pogo.Scene">
+    <select id="queryAllScene" resultMap="SceneResultMap">
         select * from t_scene
     </select>
 
-    <select id="querySceneByName" resultType="com.kaung.pogo.Scene">
+    <select id="querySceneByName" resultMap="SceneResultMap">
         select * from t_scene where scene_name=#{scene_name}
     </select>
 
+    <select id="querySceneVague" resultMap="SceneResultMap" parameterType="com.kaung.pogo.QueryInfo">
+        select * from t_scene where 1=1
+        <if test="query != null"> and scene_name like '%${query}%'</if>
+    </select>
+
+    <select id="queryScene" resultType="com.kaung.pogo.Scene">
+        select s.id, s.scene_name from t_scene s
+    </select>
 </mapper>

@@ -29,6 +29,7 @@
         <property name="dataSource" ref="dataSource"/>
         <!--绑定mybatis配置文件-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
     </bean>
     <!--配置dao接口扫描包,动态实现注入-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

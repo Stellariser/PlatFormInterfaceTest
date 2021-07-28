@@ -32,7 +32,7 @@ public class LoginController {
         if (result) {
             map.put("status", 200);
             map.put("msg", "登陆成功");
-            map.put("token","我嫩爹"+username);
+            map.put("token",username);
         }else{
             map.put("status", 0);
             map.put("errorInfo","登录失败，请重新登录");

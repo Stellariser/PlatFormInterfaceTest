@@ -1,5 +1,6 @@
 package com.kaung.mapper;
 
+import com.kaung.pogo.QueryInfo;
 import com.kaung.pogo.Scene;
 import com.kaung.pogo.User;
 import org.springframework.stereotype.Component;
@@ -19,4 +20,8 @@ public interface SceneMapper {
     List<Scene> queryAllScene();
 
     Scene querySceneByName(String name);
+
+    List<Scene> querySceneVague(QueryInfo queryInfo);
+
+    List<Scene> queryScene();
 }

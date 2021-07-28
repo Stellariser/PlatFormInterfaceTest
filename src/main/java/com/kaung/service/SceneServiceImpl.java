@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.mapper.SceneMapper;
+import com.kaung.pogo.QueryInfo;
 import com.kaung.pogo.Scene;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,5 +44,15 @@ public class SceneServiceImpl implements SceneService{
     @Override
     public Scene querySceneByName(String name) {
         return sceneMapper.querySceneByName(name);
+    }
+
+    @Override
+    public List<Scene> querySceneVague(QueryInfo queryInfo) {
+        return sceneMapper.querySceneVague(queryInfo);
+    }
+
+    @Override
+    public List<Scene> queryScene() {
+        return sceneMapper.queryScene();
     }
 }

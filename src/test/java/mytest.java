@@ -28,6 +28,54 @@ public class mytest {
 
     }
     @Test
+    public void queryUservaguetext(){
+        QueryInfo queryInfo = new QueryInfo();
+        queryInfo.setQuery("a");
+        queryInfo.setPageNumber(1);
+        queryInfo.setPageSize(5);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService UserService = (UserService) context.getBean("UserServiceImpl");
+        for (User User : UserService.queryUserVague(queryInfo)) {
+            System.out.println(User);
+        }
+    }
+    @Test
+    public void queryScenevaguetext(){
+        QueryInfo queryInfo = new QueryInfo();
+        queryInfo.setQuery("a");
+        queryInfo.setPageNumber(1);
+        queryInfo.setPageSize(5);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        SceneService SceneService = (SceneService) context.getBean("SceneServiceImpl");
+        for (Scene Scene : SceneService.querySceneVague(queryInfo)) {
+            System.out.println(Scene);
+        }
+    }
+
+    @Test
+    public void queryScenetext(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        SceneService SceneService = (SceneService) context.getBean("SceneServiceImpl");
+        for (Scene Scene : SceneService.queryScene()) {
+            System.out.println(Scene);
+        }
+    }
+    @Test
+    public void queryClasscificationvaguetext(){
+        QueryInfo queryInfo = new QueryInfo();
+        queryInfo.setQuery("a");
+        queryInfo.setPageNumber(1);
+        queryInfo.setPageSize(5);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClasscificationService ClasscificationService = (ClasscificationService) context.getBean("ClasscificationServiceImpl");
+        for (Classcification Classcification : ClasscificationService.queryClasscificationVague(queryInfo)) {
+            System.out.println(Classcification);
+        }
+    }
+
+
+
+    @Test
     public void datasettext(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         DatasetsService DatasetsService = (com.kaung.service.DatasetsService) context.getBean("DatasetsServiceImpl");
@@ -35,6 +83,18 @@ public class mytest {
             System.out.println(Datasets);
         }
 
+    }
+    @Test
+    public void queryDatasetsvaguetext(){
+        QueryInfo queryInfo = new QueryInfo();
+        queryInfo.setQuery("");
+        queryInfo.setPageNumber(1);
+        queryInfo.setPageSize(5);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DatasetsService DatasetsService = (DatasetsService) context.getBean("DatasetsServiceImpl");
+        for (Datasets Datasets : DatasetsService.queryDatasetsVague(queryInfo)) {
+            System.out.println(Datasets);
+        }
     }
     @Test
     public void classcificationtext(){

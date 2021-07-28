@@ -5,6 +5,16 @@
 
 <mapper namespace="com.kaung.mapper.ClasscificationMapper">
 
+    <resultMap id="ClasscificationResultMap" type="com.kaung.pogo.Classcification">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="class_code" jdbcType="BIGINT"  property="class_code"/>
+        <result column="classname" jdbcType="VARCHAR"  property="classname"/>
+        <result column="remarks" jdbcType="VARCHAR"  property="remarks"/>
+        <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
+        <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
+    </resultMap>
+
+
     <insert id="addClasscification" parameterType="com.kaung.pogo.Classcification">
         insert into t_classcification (class_code, class_name, remarks, create_person,create_time) values (#{class_code},#{class_name},#{remarks},#{create_person},#{create_time})
     </insert>
@@ -18,16 +28,21 @@
     </update>
 
 
-    <select id="queryClasscificationById" resultType="com.kaung.pogo.Classcification">
+    <select id="queryClasscificationById" resultMap="ClasscificationResultMap">
         select *from t_classcification where id=#{id}
     </select>
 
-    <select id="queryAllClasscification" resultType="com.kaung.pogo.Classcification">
+    <select id="queryAllClasscification" resultMap="ClasscificationResultMap">
         select * from t_classcification
     </select>
 
-    <select id="queryClasscificationByName" resultType="com.kaung.pogo.Classcification">
+    <select id="queryClasscificationByName" resultMap="ClasscificationResultMap">
         select * from t_classcification where class_name=#{class_name}
+    </select>
+
+    <select id="queryClasscificationVague" resultMap="ClasscificationResultMap" parameterType="com.kaung.pogo.QueryInfo">
+        select * from t_classcification where 1=1
+        <if test="query != null"> and class_name like '%${query}%'</if>
     </select>
 
 </mapper>

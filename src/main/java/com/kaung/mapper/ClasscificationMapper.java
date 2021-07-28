@@ -1,6 +1,7 @@
 package com.kaung.mapper;
 
 import com.kaung.pogo.Classcification;
+import com.kaung.pogo.QueryInfo;
 import com.kaung.pogo.User;
 import org.springframework.stereotype.Component;
 
@@ -19,4 +20,6 @@ public interface ClasscificationMapper {
     List<Classcification> queryAllClasscification();
 
     ClasscificationMapper queryClasscificationByName(String name);
+
+    List<Classcification> queryClasscificationVague(QueryInfo queryInfo);
 }

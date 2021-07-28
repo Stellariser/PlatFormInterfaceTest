@@ -1,5 +1,6 @@
 package com.kaung.service;
 
+import com.kaung.pogo.QueryInfo;
 import com.kaung.pogo.Scene;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,8 @@ public interface SceneService {
     List<Scene> queryAllScene();
 
     Scene querySceneByName(String name);
+
+    List<Scene> querySceneVague(QueryInfo queryInfo);
+
+    List<Scene> queryScene();
 }

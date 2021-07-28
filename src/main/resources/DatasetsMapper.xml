@@ -5,6 +5,22 @@
 
 <mapper namespace="com.kaung.mapper.DatasetsMapper">
 
+    <resultMap id="DatasetsResultMap" type="com.kaung.pogo.Datasets">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="name" jdbcType="VARCHAR"  property="name"/>
+        <result column="frames" jdbcType="BIGINT"  property="frames"/>
+        <result column="remarks" jdbcType="VARCHAR"  property="remarks"/>
+        <result column="recorder" jdbcType="VARCHAR"  property="recorder"/>
+        <result column="record_time" jdbcType="VARCHAR"  property="record_time"/>
+        <result column="record_place" jdbcType="VARCHAR"  property="record_place"/>
+        <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
+        <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
+        <result column="purpose" jdbcType="VARCHAR"  property="purpose"/>
+        <result column="update_person" jdbcType="VARCHAR"  property="update_person"/>
+        <result column="update_time" jdbcType="VARCHAR"  property="update_time"/>
+        <result column="path" jdbcType="VARCHAR"  property="path"/>
+    </resultMap>
+
     <insert id="addDatasets" parameterType="com.kaung.pogo.Datasets">
         insert into t_cam_datasets (name, frames, remarks,recorder,record_time,record_place,create_person,create_time,purpose,update_person,update_time,path) values (#{name},#{frames},#{remarks},#{recorder},#{record_time},#{record_place},#{create_person},#{create_time},#{purpose},#{update_person},#{update_time},#{path})
     </insert>
@@ -18,16 +34,21 @@
     </update>
 
 
-    <select id="queryDatasetsById" resultType="com.kaung.pogo.Datasets">
+    <select id="queryDatasetsById" resultMap="DatasetsResultMap">
         select *from t_cam_datasets where id=#{id}
     </select>
 
-    <select id="queryAllDatasets" resultType="com.kaung.pogo.Datasets">
+    <select id="queryAllDatasets" resultMap="DatasetsResultMap">
         select * from t_cam_datasets
     </select>
 
-    <select id="queryDatasetsByName" resultType="com.kaung.pogo.Datasets">
+    <select id="queryDatasetsByName" resultMap="DatasetsResultMap">
         select * from t_cam_datasets where name=#{name}
+    </select>
+
+    <select id="queryDatasetsVague" resultMap="DatasetsResultMap" parameterType="com.kaung.pogo.QueryInfo">
+        select * from t_cam_datasets where 1=1
+        <if test="query != null"> and name like '%${query}%'</if>
     </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.mapper.UserMapper;
+import com.kaung.pogo.QueryInfo;
 import com.kaung.pogo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,16 @@ public class UserServiceImpl implements UserService{
     }
 
 
+    public List<User> findUserListByUnamePage(Integer startLine, Integer pageSize) {
+        return null;
+    }
+
+
     public User queryUserByName(String name) {
         return UserMapper.queryUserByName(name);
+    }
+
+    public List<User> queryUserVague(QueryInfo queryInfo) {
+        return UserMapper.queryUserVague(queryInfo);
     }
 }

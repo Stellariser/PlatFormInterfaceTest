@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.pogo.Datasets;
+import com.kaung.pogo.QueryInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface DatasetsService {
     List<Datasets> queryAllDatasets();
 
     Datasets queryDatasetsByName(String name);
+
+    List<Datasets> queryDatasetsVague(QueryInfo queryInfo);
 }

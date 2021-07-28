@@ -46,4 +46,6 @@ public class User implements Serializable {
     public void setStatus(int status) {
         this.status = status;
     }
+
+
 }

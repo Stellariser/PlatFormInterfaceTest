@@ -2,6 +2,7 @@ package com.kaung.service;
 
 import com.kaung.mapper.DatasetsMapper;
 import com.kaung.pogo.Datasets;
+import com.kaung.pogo.QueryInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +45,8 @@ public class DatasetsServiceImpl implements DatasetsService{
 
     public Datasets queryDatasetsByName(String name) {
         return datasetsMapper.queryDatasetsByName(name);
+    }
+    public List<Datasets> queryDatasetsVague(QueryInfo queryInfo){
+        return datasetsMapper.queryDatasetsVague(queryInfo);
     }
 }

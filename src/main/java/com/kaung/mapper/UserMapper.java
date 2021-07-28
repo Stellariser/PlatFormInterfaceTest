@@ -1,5 +1,6 @@
 package com.kaung.mapper;
 
+import com.kaung.pogo.QueryInfo;
 import com.kaung.pogo.User;
 
 import org.springframework.stereotype.Component;
@@ -17,5 +18,9 @@ public interface UserMapper {
 
     List<User> queryAllUser();
 
+    List<User> queryAllUsePage();
+
     User queryUserByName(String name);
+
+    List<User> queryUserVague(QueryInfo queryInfo);
 }

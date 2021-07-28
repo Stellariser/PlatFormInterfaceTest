@@ -3,6 +3,7 @@ package com.kaung.service;
 import com.kaung.mapper.ClasscificationMapper;
 import com.kaung.mapper.DatasetsMapper;
 import com.kaung.pogo.Classcification;
+import com.kaung.pogo.QueryInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,10 @@ public class ClasscificationServiceImpl implements ClasscificationService{
 
     public ClasscificationMapper queryClasscificationByName(String name) {
         return classcificationMapper.queryClasscificationByName(name);
+    }
+
+    @Override
+    public List<Classcification> queryClasscificationVague(QueryInfo queryInfo) {
+        return classcificationMapper.queryClasscificationVague(queryInfo);
     }
 }
