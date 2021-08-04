@@ -24,7 +24,12 @@ public class LoginController {
     public String login(@RequestBody User loginForm) throws JsonProcessingException {
         String username=loginForm.getName();
         String password=loginForm.getPassword();
-        System.out.println(username+password);
+        User user = UserService.queryUserByName(username);
+        int id = user.getId();
+        int sta =0;
+        sta =user.getStatus();
+        String status = String.valueOf(sta);
+        System.out.println(username+password+status);
         Boolean result = checkLogin(username,password);
         Map<String, Object> map = new HashMap<>();
         Map<String,Object> loginMap = new HashMap<>();
@@ -32,7 +37,9 @@ public class LoginController {
         if (result) {
             map.put("status", 200);
             map.put("msg", "登陆成功");
-            map.put("token",username);
+            map.put("token",status);
+            map.put("name",username);
+            map.put("id",id);
         }else{
             map.put("status", 0);
             map.put("errorInfo","登录失败，请重新登录");
