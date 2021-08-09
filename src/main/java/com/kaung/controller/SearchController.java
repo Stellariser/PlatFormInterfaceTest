@@ -41,7 +41,7 @@ public class SearchController {
         System.out.println(VSString);
         System.out.println(VCString);
         System.out.println(VDString);
-        VSString = VSString.replaceAll("\\[", "");
+        /*VSString = VSString.replaceAll("\\[", "");
         VSString = VSString.replaceAll("\\]", "");
         String[] VSS = VSString.split(",");
         VCString = VCString.replaceAll("\\[", "");
@@ -61,10 +61,37 @@ public class SearchController {
         }
         for(int i=0 ; i<VDS.length;i++){ ;
             VDSI[i] = Integer.parseInt(VDS[i]);
-        }
-        ProperityQueryInfo.setClasscificationList(VCSI);
-        ProperityQueryInfo.setSceneList(VSSI);
-        ProperityQueryInfo.setDatasetList(VDSI);
+        }*/
+        if(! VSString.equals("[]") ) {
+            VSString = VSString.replaceAll("\\[", "");
+            VSString = VSString.replaceAll("\\]", "");
+            String[] VSS = VSString.split(",");
+            int[] VSSI = new int [VSS.length];
+            for(int i=0 ; i<VSS.length;i++){ ;
+                VSSI[i] = Integer.parseInt(VSS[i]);
+            }
+            ProperityQueryInfo.setSceneList(VSSI);
+        }else ProperityQueryInfo.setSceneList(null);
+        if(!VCString.equals("[]")) {
+            VCString = VCString.replaceAll("\\[", "");
+            VCString = VCString.replaceAll("\\]", "");
+            String[] VCS = VCString.split(",");
+            int[] VCSI = new int [VCS.length];
+            for(int i=0 ; i<VCS.length;i++){ ;
+                VCSI[i] = Integer.parseInt(VCS[i]);
+            }
+            ProperityQueryInfo.setClasscificationList(VCSI);
+        }else ProperityQueryInfo.setClasscificationList(null);
+        if(!VDString.equals("[]")) {
+            VDString = VDString.replaceAll("\\[", "");
+            VDString = VDString.replaceAll("\\]", "");
+            String[] VDS = VDString.split(",");
+            int[] VDSI = new int [VDS.length];
+            for(int i=0 ; i<VDS.length;i++){ ;
+                VDSI[i] = Integer.parseInt(VDS[i]);
+            }
+            ProperityQueryInfo.setDatasetList(VDSI);
+        }else ProperityQueryInfo.setDatasetList(null);
         List<FrameProperity> FrameProperity = FrameProperityService.queryGlobalFrame(ProperityQueryInfo);
         PageInfo<FrameProperity> pageInfo = new PageInfo<>(FrameProperity);
         HashMap<String, Object> resultMap = new HashMap<>();

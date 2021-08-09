@@ -21,6 +21,9 @@ public class Datasets {
     private String update_person;
     private String update_time;
     private String path;
+    private String ClassContent;
+    private String SceneContent;
+
 
     public int getId() {
         return id;
@@ -124,5 +127,21 @@ public class Datasets {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getClassContent() {
+        return ClassContent;
+    }
+
+    public void setClassContent(String classContent) {
+        ClassContent = classContent;
+    }
+
+    public String getSceneContent() {
+        return SceneContent;
+    }
+
+    public void setSceneContent(String sceneContent) {
+        SceneContent = sceneContent;
     }
 }

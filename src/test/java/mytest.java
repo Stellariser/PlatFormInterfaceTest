@@ -93,6 +93,24 @@ public class mytest {
         queryInfo.setQuery("");
         queryInfo.setPageNumber(1);
         queryInfo.setPageSize(5);
+        int [] sceneList = {1};
+        int [] classcificationList ={1};
+        queryInfo.setSceneList(sceneList);
+        queryInfo.setClasscificationList(classcificationList);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DatasetsService DatasetsService = (DatasetsService) context.getBean("DatasetsServiceImpl");
+        for (Datasets Datasets : DatasetsService.queryDatasetsVague(queryInfo)) {
+            System.out.println(Datasets);
+        }
+    }
+    @Test
+    public void queryDatasetsvagueinitialtext(){
+        QueryInfo queryInfo = new QueryInfo();
+        queryInfo.setQuery("");
+        queryInfo.setPageNumber(1);
+        queryInfo.setPageSize(5);
+        queryInfo.setSceneList(null);
+        queryInfo.setClasscificationList(null);
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         DatasetsService DatasetsService = (DatasetsService) context.getBean("DatasetsServiceImpl");
         for (Datasets Datasets : DatasetsService.queryDatasetsVague(queryInfo)) {

@@ -24,13 +24,35 @@ public class DatasetController {
     @RequestMapping(value = "/queryDatasetsVague", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin
-    public String queryDatasetsVague(String query,int pageNumber, int pageSize){
+    public String queryDatasetsVague(String query,int pageNumber, int pageSize, String VSString, String VCString){
         //掉一个pagehelper调取分页数据
         PageHelper.startPage(pageNumber,pageSize);
         QueryInfo queryInfo = new QueryInfo();
         queryInfo.setQuery(query);
         queryInfo.setPageNumber(pageNumber);
         queryInfo.setPageSize(pageSize);
+        System.out.println(VSString);
+        System.out.println(VCString);
+        if(! VSString.equals("[]") ) {
+            VSString = VSString.replaceAll("\\[", "");
+            VSString = VSString.replaceAll("\\]", "");
+            String[] VSS = VSString.split(",");
+            int[] VSSI = new int [VSS.length];
+            for(int i=0 ; i<VSS.length;i++){ ;
+                VSSI[i] = Integer.parseInt(VSS[i]);
+            }
+            queryInfo.setSceneList(VSSI);
+        }else queryInfo.setSceneList(null);
+        if(!VCString.equals("[]")) {
+            VCString = VCString.replaceAll("\\[", "");
+            VCString = VCString.replaceAll("\\]", "");
+            String[] VCS = VCString.split(",");
+            int[] VCSI = new int [VCS.length];
+            for(int i=0 ; i<VCS.length;i++){ ;
+                VCSI[i] = Integer.parseInt(VCS[i]);
+            }
+            queryInfo.setClasscificationList(VCSI);
+        }else queryInfo.setClasscificationList(null);
         List<Datasets> Datasets = DatasetsService.queryDatasetsVague(queryInfo);
         PageInfo<Datasets> pageInfo = new PageInfo<>(Datasets);
         HashMap<String, Object> resultMap = new HashMap<>();

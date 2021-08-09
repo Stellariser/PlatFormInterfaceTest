@@ -4,19 +4,18 @@ public class QueryInfo {
     private String query;
     private int pageSize;
     private int pageNumber;
+    private int[] sceneList;
+    private int[] classcificationList;
 
-    public QueryInfo() {
-    }
-
-    public QueryInfo(int pageSize, int pageNumber) {
-        this.pageSize = pageSize;
-        this.pageNumber = pageNumber;
-    }
-
-    public QueryInfo(String query, int pageSize, int pageNumber) {
+    public QueryInfo(String query, int pageSize, int pageNumber, int[] sceneList, int[] classcificationList) {
         this.query = query;
         this.pageSize = pageSize;
         this.pageNumber = pageNumber;
+        this.sceneList = sceneList;
+        this.classcificationList = classcificationList;
+    }
+
+    public QueryInfo() {
     }
 
     public String getQuery() {
@@ -41,5 +40,21 @@ public class QueryInfo {
 
     public void setPageNumber(int pageNumber) {
         this.pageNumber = pageNumber;
+    }
+
+    public int[] getSceneList() {
+        return sceneList;
+    }
+
+    public void setSceneList(int[] sceneList) {
+        this.sceneList = sceneList;
+    }
+
+    public int[] getClasscificationList() {
+        return classcificationList;
+    }
+
+    public void setClasscificationList(int[] classcificationList) {
+        this.classcificationList = classcificationList;
     }
 }

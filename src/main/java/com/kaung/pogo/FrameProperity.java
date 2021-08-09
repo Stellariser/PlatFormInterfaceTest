@@ -16,6 +16,12 @@ public class FrameProperity {
     private String create_time;
     private String path;
     private String target_id;
+    private String ClassContent;
+    private String SceneContent;
+    private String scene_name;
+    private String class_name;
+    private String name;
+
 
     public int getId() {
         return id;
@@ -79,5 +85,45 @@ public class FrameProperity {
 
     public void setTarget_id(String target_id) {
         this.target_id = target_id;
+    }
+
+    public String getClassContent() {
+        return ClassContent;
+    }
+
+    public void setClassContent(String classContent) {
+        ClassContent = classContent;
+    }
+
+    public String getSceneContent() {
+        return SceneContent;
+    }
+
+    public void setSceneContent(String sceneContent) {
+        SceneContent = sceneContent;
+    }
+
+    public String getScene_name() {
+        return scene_name;
+    }
+
+    public void setScene_name(String scene_name) {
+        this.scene_name = scene_name;
+    }
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

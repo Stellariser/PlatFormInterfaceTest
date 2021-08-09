@@ -19,6 +19,8 @@
         <result column="update_person" jdbcType="VARCHAR"  property="update_person"/>
         <result column="update_time" jdbcType="VARCHAR"  property="update_time"/>
         <result column="path" jdbcType="VARCHAR"  property="path"/>
+        <result column="ClassContent" jdbcType="VARCHAR"  property="ClassContent"/>
+        <result column="SceneContent" jdbcType="VARCHAR"  property="SceneContent"/>
     </resultMap>
 
     <insert id="addDatasets" parameterType="com.kaung.pogo.Datasets">
@@ -47,8 +49,45 @@
     </select>
 
     <select id="queryDatasetsVague" resultMap="DatasetsResultMap" parameterType="com.kaung.pogo.QueryInfo">
-        select * from t_cam_datasets where 1=1
-        <if test="query != null"> and name like '%${query}%'</if>
+        select d.id ,
+        d.name,
+        d.frames,
+        d.remarks,
+        d.recorder,
+        d.record_time,
+        d.record_place,
+        d.create_person,
+        d.create_time,
+        d.purpose,
+        d.update_person,
+        d.update_time,
+        d.path,
+        GROUP_CONCAT(DISTINCT c.class_name) ClassContent,
+        GROUP_CONCAT(DISTINCT s.scene_name) SceneContent
+        from t_cam_datasets d ,
+        t_classcification c,
+        t_dataset_to_classcification dc,
+        t_dataset_to_scene ds,
+        t_scene s
+        where 1=1
+        and d.id=dc.dataset_id
+          and dc.classcification_id=c.id
+          and d.id=ds.dataset_id
+          and s.id = ds.scene_id
+        <if test="sceneList != null ">
+            and s.id in
+            <foreach collection="sceneList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+        <if test="classcificationList !=null ">
+            and c.id in
+            <foreach collection="classcificationList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+        <if test="query != null"> and d.name like '%${query}%'</if>
+        GROUP BY d.id
     </select>
 
     <select id="queryDatasetsSearchList" resultMap="DatasetsResultMap">
