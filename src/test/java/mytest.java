@@ -1,9 +1,12 @@
 import com.kaung.pogo.*;
 import com.kaung.service.*;
+import com.kaung.vo.ProperityQueryInfo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Arrays;
+import java.util.List;
 
 
 public class mytest {
@@ -94,6 +97,29 @@ public class mytest {
         DatasetsService DatasetsService = (DatasetsService) context.getBean("DatasetsServiceImpl");
         for (Datasets Datasets : DatasetsService.queryDatasetsVague(queryInfo)) {
             System.out.println(Datasets);
+        }
+    }
+
+    @Test
+    public void queryProperitytext(){
+        int [] datasetsList = {4,5,6,7};
+        int [] sceneList = {1,2,3,4,5};
+        int [] classcificationList ={1,2,3,4,5,6};
+        ProperityQueryInfo ProperityQueryInfo = new ProperityQueryInfo();
+        ProperityQueryInfo.setQuery("");
+        ProperityQueryInfo.setPageNumber(1);
+        ProperityQueryInfo.setPageSize(5);
+        ProperityQueryInfo.setDatasetList(datasetsList);
+        ProperityQueryInfo.setSceneList(sceneList);
+        ProperityQueryInfo.setClasscificationList(classcificationList);
+        System.out.println(Arrays.toString(ProperityQueryInfo.getDatasetList()));
+        System.out.println(Arrays.toString(ProperityQueryInfo.getClasscificationList()));
+        System.out.println(Arrays.toString(ProperityQueryInfo.getSceneList()));
+        System.out.println(ProperityQueryInfo.getSceneList().getClass());
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameProperityService FrameProperityService = (FrameProperityService) context.getBean("FrameProperityServiceImpl");
+        for (FrameProperity FrameProperity : FrameProperityService.queryGlobalFrame(ProperityQueryInfo)) {
+            System.out.println(FrameProperity);
         }
     }
     @Test

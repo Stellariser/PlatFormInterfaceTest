@@ -2,6 +2,7 @@ package com.kaung.mapper;
 
 import com.kaung.pogo.FrameProperity;
 import com.kaung.pogo.User;
+import com.kaung.vo.ProperityQueryInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface FrameProperityMapper {
     List<FrameProperity> queryAllFrameProperity();
 
     FrameProperity queryFrameProperityByName(String name);
+
+    List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo);
 }

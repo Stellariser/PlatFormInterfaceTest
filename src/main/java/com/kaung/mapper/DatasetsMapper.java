@@ -22,4 +22,6 @@ public interface DatasetsMapper {
     Datasets queryDatasetsByName(String name);
 
     List<Datasets> queryDatasetsVague(QueryInfo queryInfo);
+
+    List<Datasets> queryDatasetsSearchList();
 }

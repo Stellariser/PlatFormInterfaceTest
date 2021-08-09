@@ -51,4 +51,7 @@
         <if test="query != null"> and name like '%${query}%'</if>
     </select>
 
+    <select id="queryDatasetsSearchList" resultMap="DatasetsResultMap">
+        select t_cam_datasets.id, t_cam_datasets.name from t_cam_datasets
+    </select>
 </mapper>

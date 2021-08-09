@@ -49,4 +49,9 @@ public class DatasetsServiceImpl implements DatasetsService{
     public List<Datasets> queryDatasetsVague(QueryInfo queryInfo){
         return datasetsMapper.queryDatasetsVague(queryInfo);
     }
+
+    @Override
+    public List<Datasets> queryDatasetsSearchList() {
+        return datasetsMapper.queryDatasetsSearchList();
+    }
 }

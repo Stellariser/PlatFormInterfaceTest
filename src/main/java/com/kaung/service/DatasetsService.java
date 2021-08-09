@@ -21,4 +21,6 @@ public interface DatasetsService {
     Datasets queryDatasetsByName(String name);
 
     List<Datasets> queryDatasetsVague(QueryInfo queryInfo);
+
+    List<Datasets> queryDatasetsSearchList();
 }

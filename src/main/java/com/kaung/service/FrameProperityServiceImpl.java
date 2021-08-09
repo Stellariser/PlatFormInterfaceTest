@@ -2,6 +2,7 @@ package com.kaung.service;
 
 import com.kaung.mapper.FrameProperityMapper;
 import com.kaung.pogo.FrameProperity;
+import com.kaung.vo.ProperityQueryInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -43,5 +44,10 @@ public class FrameProperityServiceImpl implements FrameProperityService {
     @Override
     public FrameProperity queryFrameProperityByName(String name) {
         return frameProperityMapper.queryFrameProperityByName(name);
+    }
+
+    @Override
+    public List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo) {
+        return frameProperityMapper.queryGlobalFrame(ProperityQueryInfo);
     }
 }

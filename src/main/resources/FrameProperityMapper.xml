@@ -5,6 +5,19 @@
 
 <mapper namespace="com.kaung.mapper.FrameProperityMapper">
 
+
+    <resultMap id="FrameResultMap" type="com.kaung.pogo.FrameProperity">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="dataset_id" jdbcType="BIGINT"  property="dataset_id"/>
+        <result column="classification_id" jdbcType="BIGINT"  property="classification_id"/>
+        <result column="scene_id" jdbcType="BIGINT"  property="scene_id"/>
+        <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
+        <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
+        <result column="path" jdbcType="VARCHAR"  property="path"/>
+        <result column="target_id" jdbcType="BIGINT"  property="target_id"/>
+    </resultMap>
+
+
     <insert id="addFrameProperity" parameterType="com.kaung.pogo.FrameProperity">
         insert into t_frame_properity (dataset_id, classification_id, scene_id,create_person,create_time,path,target_id) values (#{dataset_id},#{classification_id},#{scene_id},#{create_person},#{create_time},#{path},#{target_id})
     </insert>
@@ -18,16 +31,37 @@
     </update>
 
 
-    <select id="queryFrameProperityById" resultType="com.kaung.pogo.FrameProperity">
+    <select id="queryFrameProperityById" resultMap="FrameResultMap">
         select *from t_frame_properity where id=#{id}
     </select>
 
-    <select id="queryAllFrameProperity" resultType="com.kaung.pogo.FrameProperity">
+    <select id="queryAllFrameProperity" resultMap="FrameResultMap">
         select * from t_frame_properity
     </select>
 
-    <select id="queryFrameProperityByName" resultType="com.kaung.pogo.FrameProperity">
+    <select id="queryFrameProperityByName" resultMap="FrameResultMap">
         select * from t_frame_properity where dataset_id=#{dataset_id}
     </select>
 
+    <select id="queryGlobalFrame" resultMap="FrameResultMap" parameterType="com.kaung.vo.ProperityQueryInfo">
+        select * from t_frame_properity f where 1=1
+        <if test="sceneList.length >0 and sceneList !=null ">
+            and f.scene_id in
+            <foreach collection="sceneList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+        <if test="classcificationList.length>0 and classcificationList !=null ">
+            and f.classification_id in
+            <foreach collection="classcificationList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+        <if test="datasetList.length>0 and datasetList !=null ">
+            and f.dataset_id in
+            <foreach collection="datasetList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+    </select>
 </mapper>

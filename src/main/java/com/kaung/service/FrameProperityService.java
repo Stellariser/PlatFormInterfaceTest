@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.pogo.FrameProperity;
+import com.kaung.vo.ProperityQueryInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface FrameProperityService {
     List<FrameProperity> queryAllFrameProperity();
 
     FrameProperity queryFrameProperityByName(String name);
+
+    List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo);
 }
