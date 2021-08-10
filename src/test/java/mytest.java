@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -123,6 +125,8 @@ public class mytest {
         int [] datasetsList = {4,5,6,7};
         int [] sceneList = {1,2,3,4,5};
         int [] classcificationList ={1,2,3,4,5,6};
+        /*int [] nosceneList = {1,2};
+        int [] noclasscificationList ={1,4};*/
         ProperityQueryInfo ProperityQueryInfo = new ProperityQueryInfo();
         ProperityQueryInfo.setQuery("");
         ProperityQueryInfo.setPageNumber(1);
@@ -130,6 +134,9 @@ public class mytest {
         ProperityQueryInfo.setDatasetList(datasetsList);
         ProperityQueryInfo.setSceneList(sceneList);
         ProperityQueryInfo.setClasscificationList(classcificationList);
+        ProperityQueryInfo.setExtendLabel("2");
+        /*ProperityQueryInfo.setNosceneList(nosceneList);
+        ProperityQueryInfo.setNoclasscificationList(noclasscificationList);*/
         System.out.println(Arrays.toString(ProperityQueryInfo.getDatasetList()));
         System.out.println(Arrays.toString(ProperityQueryInfo.getClasscificationList()));
         System.out.println(Arrays.toString(ProperityQueryInfo.getSceneList()));
@@ -139,6 +146,11 @@ public class mytest {
         for (FrameProperity FrameProperity : FrameProperityService.queryGlobalFrame(ProperityQueryInfo)) {
             System.out.println(FrameProperity);
         }
+    }
+    @Test
+    public void timetest(){
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(now);
     }
     @Test
     public void classcificationtext(){

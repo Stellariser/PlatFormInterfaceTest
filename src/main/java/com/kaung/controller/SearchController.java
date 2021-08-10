@@ -31,7 +31,8 @@ public class SearchController {
     @RequestMapping(value = "/queryFrame", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin
-    public String queryDatasetsVague(String query, int pageNumber, int pageSize, String VSString, String VCString, String VDString){
+    public String queryDatasetsVague(String query, int pageNumber, int pageSize, String VSString, String VCString, String VDString, String VNCString, String VNSString,String extendLabel){
+        System.out.println(extendLabel);
         //掉一个pagehelper调取分页数据
         PageHelper.startPage(pageNumber,pageSize);
         ProperityQueryInfo ProperityQueryInfo = new ProperityQueryInfo();
@@ -72,6 +73,7 @@ public class SearchController {
             }
             ProperityQueryInfo.setSceneList(VSSI);
         }else ProperityQueryInfo.setSceneList(null);
+
         if(!VCString.equals("[]")) {
             VCString = VCString.replaceAll("\\[", "");
             VCString = VCString.replaceAll("\\]", "");
@@ -82,6 +84,7 @@ public class SearchController {
             }
             ProperityQueryInfo.setClasscificationList(VCSI);
         }else ProperityQueryInfo.setClasscificationList(null);
+
         if(!VDString.equals("[]")) {
             VDString = VDString.replaceAll("\\[", "");
             VDString = VDString.replaceAll("\\]", "");
@@ -92,6 +95,29 @@ public class SearchController {
             }
             ProperityQueryInfo.setDatasetList(VDSI);
         }else ProperityQueryInfo.setDatasetList(null);
+
+        if(! VNSString.equals("[]") ) {
+            VNSString = VNSString.replaceAll("\\[", "");
+            VNSString = VNSString.replaceAll("\\]", "");
+            String[] VNSS = VNSString.split(",");
+            int[] VNSSI = new int [VNSS.length];
+            for(int i=0 ; i<VNSS.length;i++){ ;
+                VNSSI[i] = Integer.parseInt(VNSS[i]);
+            }
+            ProperityQueryInfo.setNosceneList(VNSSI);
+        }else ProperityQueryInfo.setNosceneList(null);
+
+        if(! VNCString.equals("[]") ) {
+            VNCString = VNCString.replaceAll("\\[", "");
+            VNCString = VNCString.replaceAll("\\]", "");
+            String[] VNCS = VNCString.split(",");
+            int[] VNCSI = new int [VNCS.length];
+            for(int i=0 ; i<VNCS.length;i++){ ;
+                VNCSI[i] = Integer.parseInt(VNCS[i]);
+            }
+            ProperityQueryInfo.setNoclasscificationList(VNCSI);
+        }else ProperityQueryInfo.setNoclasscificationList(null);
+        ProperityQueryInfo.setExtendLabel(extendLabel);
         List<FrameProperity> FrameProperity = FrameProperityService.queryGlobalFrame(ProperityQueryInfo);
         PageInfo<FrameProperity> pageInfo = new PageInfo<>(FrameProperity);
         HashMap<String, Object> resultMap = new HashMap<>();

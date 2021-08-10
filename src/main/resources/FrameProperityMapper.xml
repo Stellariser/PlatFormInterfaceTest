@@ -16,8 +16,8 @@
         <result column="path" jdbcType="VARCHAR"  property="path"/>
         <result column="target_id" jdbcType="BIGINT"  property="target_id"/>
         <result column="name" jdbcType="VARCHAR"  property="name"/>
-        <result column="scene_name" jdbcType="VARCHAR"  property="scene_name"/>
-        <result column="class_name" jdbcType="VARCHAR"  property="class_name"/>
+        <result column="fsn" jdbcType="VARCHAR"  property="scene_name"/>
+        <result column="fcn" jdbcType="VARCHAR"  property="class_name"/>
     </resultMap>
 
 
@@ -69,25 +69,23 @@
     </select>-->
 
     <select id="queryGlobalFrame" resultMap="FrameResultMap" parameterType="com.kaung.vo.ProperityQueryInfo">
+        <if test="extendLabel == 2 ">
+            select ft.*,c.class_name fcn,
+            s.scene_name fsn
+            FROM t_classcification c,
+            t_scene s,(
+        </if>
         SELECT f.id,
-        f.dataset_id,
         f.create_person,
         f.create_time,
         f.path,
-        f.target_id,
-        fc.class_id_id,
-        fc.frame_id cfid,
-        fs.frame_id sfid,
-        fs.scene_id_id,
         s.scene_name,
-        s.id sid,
         c.class_name,
-        c.id cid,
-        d.id did,
         d.`name`,
         GROUP_CONCAT(DISTINCT c.class_name) ClassContent,
         GROUP_CONCAT(DISTINCT s.scene_name) SceneContent
-        from t_frame_properity f,t_frame_to_scene fs,t_frame_to_classcification fc,t_classcification c,t_scene s,t_cam_datasets d
+        from t_frame_properity f,t_frame_to_scene fs,t_frame_to_classcification fc,t_classcification c,t_scene
+        s,t_cam_datasets d
         WHERE f.id=fc.frame_id
         and fc.class_id_id=c.id
         and f.id=fs.frame_id
@@ -111,7 +109,26 @@
                 ${item}
             </foreach>
         </if>
+        <if test="noclasscificationList !=null ">
+            and c.id not in
+            <foreach collection="noclasscificationList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+        <if test="nosceneList !=null ">
+            and s.id not in
+            <foreach collection="nosceneList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
         GROUP BY f.id
+        <if test="extendLabel == 2 ">
+            ) ft
+            LEFT JOIN t_frame_label on
+            ft.id = t_frame_label.frame_id
+            WHERE
+            t_frame_label.classification_id = c.id and t_frame_label.scene_id = s.id
+        </if>
     </select>
 
 
