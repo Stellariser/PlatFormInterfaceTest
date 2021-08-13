@@ -21,7 +21,7 @@ public class FrameProperity {
     private String scene_name;
     private String class_name;
     private String name;
-
+    private String TagConTent;
 
     public int getId() {
         return id;
@@ -125,5 +125,13 @@ public class FrameProperity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTagConTent() {
+        return TagConTent;
+    }
+
+    public void setTagConTent(String tagConTent) {
+        TagConTent = tagConTent;
     }
 }

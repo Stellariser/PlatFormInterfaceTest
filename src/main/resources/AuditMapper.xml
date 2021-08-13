@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.AuditMapper">
+
+    <resultMap id="AuditResultMap" type="com.kaung.pogo.Audit">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="dataset_id" jdbcType="BIGINT"  property="dataset_id"/>
+        <result column="dataset_name" jdbcType="VARCHAR"  property="dataset_name"/>
+        <result column="size" jdbcType="BIGINT"  property="size"/>
+        <result column="purpose" jdbcType="VARCHAR"  property="purpose"/>
+        <result column="modifier" jdbcType="VARCHAR"  property="modifier"/>
+        <result column="modify_time" jdbcType="VARCHAR"  property="modify_time"/>
+        <result column="status" jdbcType="VARCHAR"  property="status"/>
+        <result column="remarks" jdbcType="VARCHAR"  property="remarks"/>
+        <result column="auditor" jdbcType="VARCHAR"  property="auditor"/>
+        <result column="audit_time" jdbcType="VARCHAR"  property="audit_time"/>
+        <result column="path" jdbcType="VARCHAR"  property="path"/>
+        <result column="recorder" jdbcType="VARCHAR"  property="recorder"/>
+        <result column="record_time" jdbcType="VARCHAR"  property="record_time"/>
+        <result column="record_place" jdbcType="VARCHAR"  property="record_place"/>
+        <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
+        <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
+
+    </resultMap>
+
+    <insert id="addAudit" parameterType="com.kaung.pogo.Audit">
+        insert into t_dataset_audit (dataset_id, dataset_name, size,purpose, modifier, modify_time, status, remark,auditor, audit_time, path,recorder, record_time, record_place, create_time, create_person) values (#{dataset_id},#{dataset_name},#{size},#{purpose},#{modifier},#{modify_time},#{status},#{remark},#{auditor},#{audit_time},#{path},#{recorder},#{record_time},#{record_place},#{create_time},#{create_person})
+    </insert>
+
+    <delete id="deleteAuditById" parameterType="int">
+        delete from t_dataset_audit where id = #{id};
+    </delete>
+
+    <update id="updateAudit" parameterType="com.kaung.pogo.Audit">
+        update t_dataset_audit set dataset_id=#{dataset_id} ,dataset_name=#{dataset_name},size=#{size},purpose=#{purpose},modifier=#{modifier},modify_time=#{modify_time},status=#{status},remark=#{remark},auditor=#{auditor},audit_time=#{audit_time},path=#{path},recorder=#{recorder},record_time=#{record_time},record_place=#{record_place},create_time=#{create_time},create_person=#{create_person} where id =#{id}
+    </update>
+
+
+    <select id="queryAuditById" resultMap="AuditResultMap">
+        select * from t_dataset_audit a  where a.id=#{id}
+    </select>
+
+    <select id="queryAllAudit" resultMap="AuditResultMap">
+        select * from t_dataset_audit
+    </select>
+
+    <select id="queryAuditByName" resultMap="AuditResultMap">
+        select * from t_dataset_audit where dataset_name=#{dataset_name}
+    </select>
+
+</mapper>

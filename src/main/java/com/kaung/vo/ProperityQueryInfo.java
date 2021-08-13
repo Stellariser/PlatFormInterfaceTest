@@ -9,6 +9,8 @@ public class ProperityQueryInfo {
     private int[] nosceneList;
     private int[] noclasscificationList;
     private int[] nodatasetList;
+    private int[] tagList;
+    private int[] noTagList;
     private String query;
     private int pageSize;
     private int pageNumber;
@@ -17,13 +19,15 @@ public class ProperityQueryInfo {
     public ProperityQueryInfo() {
     }
 
-    public ProperityQueryInfo(int[] sceneList, int[] classcificationList, int[] datasetList, int[] nosceneList, int[] noclasscificationList, int[] nodatasetList, String query, int pageSize, int pageNumber, String extendLabel) {
+    public ProperityQueryInfo(int[] sceneList, int[] classcificationList, int[] datasetList, int[] nosceneList, int[] noclasscificationList, int[] nodatasetList, int[] tagList, int[] noTagList, String query, int pageSize, int pageNumber, String extendLabel) {
         this.sceneList = sceneList;
         this.classcificationList = classcificationList;
         this.datasetList = datasetList;
         this.nosceneList = nosceneList;
         this.noclasscificationList = noclasscificationList;
         this.nodatasetList = nodatasetList;
+        this.tagList = tagList;
+        this.noTagList = noTagList;
         this.query = query;
         this.pageSize = pageSize;
         this.pageNumber = pageNumber;
@@ -76,6 +80,22 @@ public class ProperityQueryInfo {
 
     public void setNodatasetList(int[] nodatasetList) {
         this.nodatasetList = nodatasetList;
+    }
+
+    public int[] getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(int[] tagList) {
+        this.tagList = tagList;
+    }
+
+    public int[] getNoTagList() {
+        return noTagList;
+    }
+
+    public void setNoTagList(int[] noTagList) {
+        this.noTagList = noTagList;
     }
 
     public String getQuery() {

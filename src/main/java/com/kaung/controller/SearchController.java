@@ -31,8 +31,10 @@ public class SearchController {
     @RequestMapping(value = "/queryFrame", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin
-    public String queryDatasetsVague(String query, int pageNumber, int pageSize, String VSString, String VCString, String VDString, String VNCString, String VNSString,String extendLabel){
+    public String queryDatasetsVague(String query, int pageNumber, int pageSize, String VSString, String VCString, String VDString, String VNCString, String VNSString,String extendLabel,String VTString,String VNTString){
         System.out.println(extendLabel);
+        System.out.println(VTString);
+        System.out.println(VNTString);
         //掉一个pagehelper调取分页数据
         PageHelper.startPage(pageNumber,pageSize);
         ProperityQueryInfo ProperityQueryInfo = new ProperityQueryInfo();
@@ -117,6 +119,29 @@ public class SearchController {
             }
             ProperityQueryInfo.setNoclasscificationList(VNCSI);
         }else ProperityQueryInfo.setNoclasscificationList(null);
+
+        if(! VTString.equals("[]") ) {
+            VTString = VTString.replaceAll("\\[", "");
+            VTString = VTString.replaceAll("\\]", "");
+            String[] VTS = VTString.split(",");
+            int[] VTSI = new int [VTS.length];
+            for(int i=0 ; i<VTS.length;i++){ ;
+                VTSI[i] = Integer.parseInt(VTS[i]);
+            }
+            ProperityQueryInfo.setTagList(VTSI);
+        }else ProperityQueryInfo.setTagList(null);
+
+        if(! VNTString.equals("[]") ) {
+            VNTString = VNTString.replaceAll("\\[", "");
+            VNTString = VNTString.replaceAll("\\]", "");
+            String[] VNTS = VNTString.split(",");
+            int[] VNTSI = new int [VNTS.length];
+            for(int i=0 ; i<VNTS.length;i++){ ;
+                VNTSI[i] = Integer.parseInt(VNTS[i]);
+            }
+            ProperityQueryInfo.setNoTagList(VNTSI);
+        }else ProperityQueryInfo.setNoTagList(null);
+
         ProperityQueryInfo.setExtendLabel(extendLabel);
         List<FrameProperity> FrameProperity = FrameProperityService.queryGlobalFrame(ProperityQueryInfo);
         PageInfo<FrameProperity> pageInfo = new PageInfo<>(FrameProperity);

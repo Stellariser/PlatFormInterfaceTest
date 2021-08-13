@@ -11,6 +11,7 @@
         <result column="dataset_id" jdbcType="BIGINT"  property="dataset_id"/>
         <result column="classification_id" jdbcType="BIGINT"  property="classification_id"/>
         <result column="scene_id" jdbcType="BIGINT"  property="scene_id"/>
+        <result column="tag_id" jdbcType="BIGINT"  property="tag_id"/>
         <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
         <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
         <result column="path" jdbcType="VARCHAR"  property="path"/>
@@ -82,15 +83,19 @@
         s.scene_name,
         c.class_name,
         d.`name`,
+        t.tag_name,
         GROUP_CONCAT(DISTINCT c.class_name) ClassContent,
-        GROUP_CONCAT(DISTINCT s.scene_name) SceneContent
+        GROUP_CONCAT(DISTINCT s.scene_name) SceneContent,
+        GROUP_CONCAT(DISTINCT t.tag_name) TagContent
         from t_frame_properity f,t_frame_to_scene fs,t_frame_to_classcification fc,t_classcification c,t_scene
-        s,t_cam_datasets d
+        s,t_cam_datasets d,t_frame_label l,t_tag t,t_tag_to_frame tf
         WHERE f.id=fc.frame_id
         and fc.class_id_id=c.id
         and f.id=fs.frame_id
         and fs.scene_id_id=s.id
         and f.dataset_id = d.id
+        and t.id=tf.tag_id
+        and tf.frame_id = f.id
         <if test="sceneList !=null ">
             and s.id in
             <foreach collection="sceneList" index="index" item="item" open="(" separator="," close=")">
@@ -118,6 +123,18 @@
         <if test="nosceneList !=null ">
             and s.id not in
             <foreach collection="nosceneList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+        <if test="tagList !=null ">
+            and t.id in
+            <foreach collection="tagList" index="index" item="item" open="(" separator="," close=")">
+                ${item}
+            </foreach>
+        </if>
+        <if test="noTagList !=null ">
+            and t.id not in
+            <foreach collection="noTagList" index="index" item="item" open="(" separator="," close=")">
                 ${item}
             </foreach>
         </if>

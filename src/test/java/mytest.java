@@ -33,6 +33,15 @@ public class mytest {
 
     }
     @Test
+    public void getUsertexfhfdt(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService UserService = (UserService) context.getBean("UserServiceImpl");
+        User admin = UserService.queryUserById(1);
+        System.out.println(admin);
+
+
+    }
+    @Test
     public void queryUservaguetext(){
         QueryInfo queryInfo = new QueryInfo();
         queryInfo.setQuery("a");
@@ -89,6 +98,16 @@ public class mytest {
         }
 
     }
+
+    @Test
+    public void queryTagtext(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        TagService TagService = (TagService) context.getBean("TagServiceImpl");
+        for (Tag Tag : TagService.queryTag()) {
+            System.out.println(Tag);
+        }
+    }
+
     @Test
     public void queryDatasetsvaguetext(){
         QueryInfo queryInfo = new QueryInfo();
@@ -125,6 +144,7 @@ public class mytest {
         int [] datasetsList = {4,5,6,7};
         int [] sceneList = {1,2,3,4,5};
         int [] classcificationList ={1,2,3,4,5,6};
+        int [] tagList = {1};
         /*int [] nosceneList = {1,2};
         int [] noclasscificationList ={1,4};*/
         ProperityQueryInfo ProperityQueryInfo = new ProperityQueryInfo();
@@ -134,7 +154,8 @@ public class mytest {
         ProperityQueryInfo.setDatasetList(datasetsList);
         ProperityQueryInfo.setSceneList(sceneList);
         ProperityQueryInfo.setClasscificationList(classcificationList);
-        ProperityQueryInfo.setExtendLabel("2");
+        ProperityQueryInfo.setTagList(tagList);
+        ProperityQueryInfo.setExtendLabel("1");
         /*ProperityQueryInfo.setNosceneList(nosceneList);
         ProperityQueryInfo.setNoclasscificationList(noclasscificationList);*/
         System.out.println(Arrays.toString(ProperityQueryInfo.getDatasetList()));
@@ -222,6 +243,25 @@ public class mytest {
         for (Type Type : TypeService.queryAllType()) {
             System.out.println(Type);
         }
+
+    }
+
+    @Test
+    public void Audittext(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        AuditService AuditService = (AuditService) context.getBean("AuditServiceImpl");
+        for (Audit Audit : AuditService.queryAllAudit()) {
+            System.out.println(Audit);
+        }
+
+    }
+
+    @Test
+    public void getAuditIdtext(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        AuditService AuditService = (AuditService) context.getBean("AuditServiceImpl");
+        Audit admin = AuditService.queryAuditById(5);
+        System.out.println(admin);
 
     }
 

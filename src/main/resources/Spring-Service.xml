@@ -46,7 +46,12 @@
     <bean id="TypeServiceImpl" class="com.kaung.service.TypeServiceImpl">
         <property name="TypeMapper" ref="typeMapper"/>
     </bean>
-
+    <bean id="TagServiceImpl" class="com.kaung.service.TagServiceImpl">
+        <property name="TagMapper" ref="tagMapper"/>
+    </bean>
+    <bean id="AuditServiceImpl" class="com.kaung.service.AuditServiceImpl">
+        <property name="AuditMapper" ref="auditMapper"/>
+    </bean>
 
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

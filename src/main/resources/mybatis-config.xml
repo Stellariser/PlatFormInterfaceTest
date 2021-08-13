@@ -22,6 +22,8 @@
         <mapper resource="RecursiveMapper.xml"/>
         <mapper resource="SceneMapper.xml"/>
         <mapper resource="TypeMapper.xml"/>
+        <mapper resource="TagMapper.xml"/>
+        <mapper resource="AuditMapper.xml"/>
     </mappers>
 
 </configuration>

@@ -3,12 +3,10 @@ package com.kaung.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.kaung.pogo.Classcification;
-import com.kaung.pogo.Datasets;
-import com.kaung.pogo.QueryInfo;
+import com.kaung.pogo.*;
 
-import com.kaung.pogo.Scene;
 import com.kaung.service.DatasetsService;
+import com.kaung.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +26,9 @@ public class CategoriseController {
     @Autowired
     @Qualifier("DatasetsServiceImpl")
     private com.kaung.service.DatasetsService DatasetsService ;
+    @Autowired
+    @Qualifier("TagServiceImpl")
+    private com.kaung.service.TagService TagService ;
 
 
     @RequestMapping(value = "/querySceneVague", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
@@ -127,6 +128,23 @@ public class CategoriseController {
         HashMap<String, Object> data = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         data.put("Classcification",Classcification);
+        resultMap.put("data",data);
+        resultMap.put("meta",meta);
+        meta.put("msg","获取成功");
+        meta.put("status","200");
+        //return pageInfo;
+        return JSONObject.toJSONString(resultMap) ;
+    }
+
+    @RequestMapping(value = "/queryTag", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin
+    public String queryTag(){
+        List<Tag> Tag = TagService.queryAllTag();
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> data = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        data.put("Tag",Tag);
         resultMap.put("data",data);
         resultMap.put("meta",meta);
         meta.put("msg","获取成功");

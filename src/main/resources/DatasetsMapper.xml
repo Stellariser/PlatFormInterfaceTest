@@ -64,16 +64,16 @@
         d.path,
         GROUP_CONCAT(DISTINCT c.class_name) ClassContent,
         GROUP_CONCAT(DISTINCT s.scene_name) SceneContent
-        from t_cam_datasets d ,
-        t_classcification c,
-        t_dataset_to_classcification dc,
-        t_dataset_to_scene ds,
-        t_scene s
+        from t_cam_datasets d
+        left join t_dataset_to_classcification dc
+        on d.id = dc.dataset_id
+        left join t_classcification c
+        on dc.classcification_id = c.id
+        left join t_dataset_to_scene ds
+        on ds.dataset_id = d.id
+        left join t_scene s
+        on s.id = ds.scene_id
         where 1=1
-        and d.id=dc.dataset_id
-          and dc.classcification_id=c.id
-          and d.id=ds.dataset_id
-          and s.id = ds.scene_id
         <if test="sceneList != null ">
             and s.id in
             <foreach collection="sceneList" index="index" item="item" open="(" separator="," close=")">
