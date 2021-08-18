@@ -46,7 +46,7 @@ public class TagServiceImpl implements TagService{
 
     @Override
     public List<Tag> queryTagVague(QueryInfo queryInfo) {
-        return null;
+        return tagMapper.queryTagVague(queryInfo);
     }
 
     @Override

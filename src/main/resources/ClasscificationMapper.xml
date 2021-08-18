@@ -24,7 +24,7 @@
     </delete>
 
     <update id="updateClasscification" parameterType="com.kaung.pogo.Classcification">
-        update t_classcification set class_code=#{class_code} ,class_name=#{class_name},remarks=#{remarks},create_person=#{create_person},create_time=#{create_time},  where id =#{id}
+        update t_classcification set class_name=#{class_name},remarks=#{remarks},create_person=#{create_person},create_time=#{create_time}  where id =#{id}
     </update>
 
 

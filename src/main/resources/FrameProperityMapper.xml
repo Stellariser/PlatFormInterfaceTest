@@ -87,15 +87,17 @@
         GROUP_CONCAT(DISTINCT c.class_name) ClassContent,
         GROUP_CONCAT(DISTINCT s.scene_name) SceneContent,
         GROUP_CONCAT(DISTINCT t.tag_name) TagContent
-        from t_frame_properity f,t_frame_to_scene fs,t_frame_to_classcification fc,t_classcification c,t_scene
-        s,t_cam_datasets d,t_frame_label l,t_tag t,t_tag_to_frame tf
-        WHERE f.id=fc.frame_id
-        and fc.class_id_id=c.id
-        and f.id=fs.frame_id
-        and fs.scene_id_id=s.id
+        from t_cam_datasets d,t_frame_label l,t_frame_properity f
+        LEFT JOIN t_frame_to_scene fs on fs.frame_id = f.id
+        LEFT JOIN t_scene s on fs.scene_id_id=s.id
+        LEFT JOIN t_frame_to_classcification fc on f.id=fc.frame_id
+        LEFT JOIN t_classcification c on c.id =fc.class_id_id
+        LEFT JOIN t_tag_to_frame tf on f.id = tf.frame_id
+        LEFT JOIN t_tag t on t.id = tf.tag_id
+        WHERE 1=1
         and f.dataset_id = d.id
-        and t.id=tf.tag_id
-        and tf.frame_id = f.id
+        and l.frame_id = f.id
+
         <if test="sceneList !=null ">
             and s.id in
             <foreach collection="sceneList" index="index" item="item" open="(" separator="," close=")">

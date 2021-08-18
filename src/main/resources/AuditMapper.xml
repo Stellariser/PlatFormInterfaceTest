@@ -8,6 +8,7 @@
     <resultMap id="AuditResultMap" type="com.kaung.pogo.Audit">
         <id column="id" jdbcType="BIGINT"  property="id"/>
         <result column="dataset_id" jdbcType="BIGINT"  property="dataset_id"/>
+        <result column="type" jdbcType="VARCHAR"  property="type"/>
         <result column="dataset_name" jdbcType="VARCHAR"  property="dataset_name"/>
         <result column="size" jdbcType="BIGINT"  property="size"/>
         <result column="purpose" jdbcType="VARCHAR"  property="purpose"/>
@@ -15,10 +16,12 @@
         <result column="modify_time" jdbcType="VARCHAR"  property="modify_time"/>
         <result column="status" jdbcType="VARCHAR"  property="status"/>
         <result column="remarks" jdbcType="VARCHAR"  property="remarks"/>
+        <result column="remark" jdbcType="VARCHAR"  property="remark"/>
         <result column="auditor" jdbcType="VARCHAR"  property="auditor"/>
         <result column="audit_time" jdbcType="VARCHAR"  property="audit_time"/>
         <result column="path" jdbcType="VARCHAR"  property="path"/>
         <result column="recorder" jdbcType="VARCHAR"  property="recorder"/>
+        <result column="modifier" jdbcType="VARCHAR"  property="modifier"/>
         <result column="record_time" jdbcType="VARCHAR"  property="record_time"/>
         <result column="record_place" jdbcType="VARCHAR"  property="record_place"/>
         <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
@@ -27,7 +30,7 @@
     </resultMap>
 
     <insert id="addAudit" parameterType="com.kaung.pogo.Audit">
-        insert into t_dataset_audit (dataset_id, dataset_name, size,purpose, modifier, modify_time, status, remark,auditor, audit_time, path,recorder, record_time, record_place, create_time, create_person) values (#{dataset_id},#{dataset_name},#{size},#{purpose},#{modifier},#{modify_time},#{status},#{remark},#{auditor},#{audit_time},#{path},#{recorder},#{record_time},#{record_place},#{create_time},#{create_person})
+        insert into t_dataset_audit (dataset_id, dataset_name, size,purpose, modifier, modify_time, status, remark,auditor, audit_time, path,recorder, record_time, record_place, create_time, create_person,type) values (#{dataset_id},#{dataset_name},#{size},#{purpose},#{modifier},#{modify_time},#{status},#{remark},#{auditor},#{audit_time},#{path},#{recorder},#{record_time},#{record_place},#{create_time},#{create_person},#{type})
     </insert>
 
     <delete id="deleteAuditById" parameterType="int">

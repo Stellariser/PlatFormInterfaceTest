@@ -28,17 +28,37 @@ public class AuditController {
     private com.kaung.service.DatasetsService DatasetsService ;
 
 
-    @RequestMapping(value = "/addAudit", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
+    @RequestMapping(value = "/addDatasetAudit", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
     @ResponseBody
     public String addAudit(@RequestBody Audit addForm){
         String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         addForm.setCreate_time(now);
         addForm.setStatus("未审核");
+        addForm.setType("添加数据集");
+        addForm.setDataset_id(addForm.getId());
         System.out.println(addForm.toString());
         AuditService.addAudit(addForm);
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("data",AuditService.queryAuditByName(addForm.getDataset_name()));
+        resultMap.put("meta",meta);
+        meta.put("msg","用户创建成功");
+        meta.put("status","201");
+        return JSONObject.toJSONString(resultMap);
+    }
+    @RequestMapping(value = "/editDatasetAudit", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
+    @ResponseBody
+    public String addeditdatasetAudit(@RequestBody Audit editForm){
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        editForm.setCreate_time(now);
+        editForm.setStatus("未审核");
+        editForm.setType("修改数据集");
+        editForm.setModify_time(now);
+        editForm.setDataset_id(editForm.getId());
+        System.out.println(editForm.toString());
+        AuditService.addAudit(editForm);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("meta",meta);
         meta.put("msg","用户创建成功");
         meta.put("status","201");
@@ -55,9 +75,6 @@ public class AuditController {
         queryInfo.setPageNumber(pageNumber);
         queryInfo.setPageSize(pageSize);
         List<Audit> Audit = AuditService.queryAllAudit();
-        for(Audit audit :Audit){
-            audit.setType("添加");
-        }
         PageInfo<Audit> pageInfo = new PageInfo<>(Audit);
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> data = new HashMap<>();
@@ -110,21 +127,44 @@ public class AuditController {
     public String addUser(@RequestBody Audit approveForm){
         String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         approveForm.setAudit_time(now);
-        Datasets addDatasets = new Datasets();
-        addDatasets.setName(approveForm.getDataset_name());
-        addDatasets.setFrames(approveForm.getSize());
-        addDatasets.setRemarks(approveForm.getRemark());
-        addDatasets.setPurpose(approveForm.getPurpose());
-        addDatasets.setPath(approveForm.getPath());
-        addDatasets.setRecorder(approveForm.getRecorder());
-        addDatasets.setRecord_place(approveForm.getRecord_place());
-        addDatasets.setRecord_time(approveForm.getRecord_time());
-        addDatasets.setCreate_person(approveForm.getCreate_person());
-        addDatasets.setCreate_time(approveForm.getCreate_time());
-        addDatasets.setUpdate_person(approveForm.getAuditor());
-        addDatasets.setUpdate_time(approveForm.getAudit_time());
-        if(approveForm.getStatus() == "未审核") {
-            DatasetsService.addDatasets(addDatasets);
+        Datasets d = new Datasets();
+        if(approveForm.getType().equals("添加数据集")) {
+            d.setName(approveForm.getDataset_name());
+            d.setFrames(approveForm.getSize());
+            d.setRemarks(approveForm.getRemark());
+            d.setPurpose(approveForm.getPurpose());
+            d.setPath(approveForm.getPath());
+            d.setRecorder(approveForm.getRecorder());
+            d.setRecord_place(approveForm.getRecord_place());
+            d.setRecord_time(approveForm.getRecord_time());
+            d.setCreate_person(approveForm.getCreate_person());
+            d.setCreate_time(approveForm.getCreate_time());
+            d.setUpdate_person(approveForm.getAuditor());
+            d.setUpdate_time(approveForm.getAudit_time());
+            if (approveForm.getStatus().equals("未审核")) {
+                DatasetsService.addDatasets(d);
+            }
+        }
+        if(approveForm.getType().equals("修改数据集")){
+            System.out.println(approveForm);
+            d.setId(approveForm.getDataset_id());
+            d.setName(approveForm.getDataset_name());
+            d.setFrames(approveForm.getSize());
+            d.setRemarks(approveForm.getRemark());
+            d.setPurpose(approveForm.getPurpose());
+            d.setPath(approveForm.getPath());
+            d.setRecorder(approveForm.getRecorder());
+            d.setRecord_place(approveForm.getRecord_place());
+            d.setRecord_time(approveForm.getRecord_time());
+            d.setCreate_person(approveForm.getCreate_person());
+            d.setCreate_time(approveForm.getCreate_time());
+            d.setUpdate_person(approveForm.getModifier());
+            d.setUpdate_time(approveForm.getModify_time());
+            System.out.println(d);
+            if (approveForm.getStatus().equals("未审核")) {
+                DatasetsService.updateDatasets(d);
+            }
+
         }
         approveForm.setStatus("已审核");
         AuditService.updateAudit(approveForm);
@@ -136,4 +176,30 @@ public class AuditController {
         meta.put("status","201");
         return JSONObject.toJSONString(resultMap);
     }
+
+    @RequestMapping(value = "/deny" ,produces = "text/html;charset=utf-8", method =RequestMethod.POST)
+    @ResponseBody
+    public String deleteAudit(@RequestBody Audit approveForm){
+        approveForm.setStatus("已驳回");
+        AuditService.updateAudit(approveForm);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        resultMap.put("meta",meta);
+        meta.put("msg","驳回成功");
+        meta.put("status","200");
+        return JSONObject.toJSONString(resultMap);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

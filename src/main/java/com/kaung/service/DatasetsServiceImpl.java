@@ -34,7 +34,7 @@ public class DatasetsServiceImpl implements DatasetsService{
 
 
     public Datasets queryDatasetsById(int id) {
-        return null;
+        return datasetsMapper.queryDatasetsById(id);
     }
 
 

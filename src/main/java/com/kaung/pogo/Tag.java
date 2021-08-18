@@ -7,6 +7,7 @@ import lombok.Data;
 public class Tag {
     private int id;
     private String tag_name;
+    private String remarks;
     private String create_person;
     private String create_time;
 
@@ -18,6 +19,14 @@ public class Tag {
         this.tag_name = tag_name;
         this.create_person = create_person;
         this.create_time = create_time;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
     public int getId() {

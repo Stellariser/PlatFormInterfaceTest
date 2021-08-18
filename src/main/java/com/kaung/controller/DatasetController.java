@@ -80,10 +80,32 @@ public class DatasetController {
         meta.put("status","201");
         return JSONObject.toJSONString(resultMap);
     }
+    @RequestMapping(value = "/getDatasetById", produces = "text/html;charset=utf-8", method =RequestMethod.GET)
+    @ResponseBody
+    public String getdatasetbyid(int id){
+        Datasets Datasets = DatasetsService.queryDatasetsById(id);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        resultMap.put("data",Datasets);
+        resultMap.put("meta",meta);
+        meta.put("msg","查询成功");
+        meta.put("status","200");
+        return JSONObject.toJSONString(resultMap);
+    }
 
 
-
-
+    @RequestMapping(value = "/editDataset", produces = "text/html;charset=utf-8", method =RequestMethod.POST)
+    @ResponseBody
+    public String editUser(@RequestBody Datasets editForm){
+        DatasetsService.updateDatasets(editForm);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        resultMap.put("data",editForm);
+        resultMap.put("meta",meta);
+        meta.put("msg","修改成功");
+        meta.put("status","200");
+        return JSONObject.toJSONString(resultMap);
+    }
 
 
 

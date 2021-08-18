@@ -34,7 +34,7 @@ public class ClasscificationServiceImpl implements ClasscificationService{
     }
 
 
-    public ClasscificationMapper queryClasscificationById(int id) {
+    public Classcification queryClasscificationById(int id) {
         return classcificationMapper.queryClasscificationById(id);
     }
 
@@ -44,7 +44,7 @@ public class ClasscificationServiceImpl implements ClasscificationService{
     }
 
 
-    public ClasscificationMapper queryClasscificationByName(String name) {
+    public Classcification queryClasscificationByName(String name) {
         return classcificationMapper.queryClasscificationByName(name);
     }
 

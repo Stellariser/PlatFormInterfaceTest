@@ -37,7 +37,7 @@
 
 
     <select id="queryDatasetsById" resultMap="DatasetsResultMap">
-        select *from t_cam_datasets where id=#{id}
+        select * from t_cam_datasets where id=#{id}
     </select>
 
     <select id="queryAllDatasets" resultMap="DatasetsResultMap">

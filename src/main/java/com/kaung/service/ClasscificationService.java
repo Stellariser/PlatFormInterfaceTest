@@ -20,11 +20,11 @@ public interface ClasscificationService {
 
     int updateClasscification(Classcification Classcification);
 
-    ClasscificationMapper queryClasscificationById(int id);
+    Classcification queryClasscificationById(int id);
 
     List<Classcification> queryAllClasscification();
 
-    ClasscificationMapper queryClasscificationByName(String name);
+    Classcification queryClasscificationByName(String name);
 
     List<Classcification> queryClasscificationVague(QueryInfo queryInfo);
 }

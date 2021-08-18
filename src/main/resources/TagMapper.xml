@@ -6,26 +6,26 @@
 <mapper namespace="com.kaung.mapper.TagMapper">
     <resultMap id="TagResultMap" type="com.kaung.pogo.Tag">
         <id column="id" jdbcType="BIGINT"  property="id"/>
-        <result column="scene_name" jdbcType="VARCHAR"  property="scene_name"/>
+        <result column="tag_name" jdbcType="VARCHAR"  property="tag_name"/>
         <result column="remarks" jdbcType="VARCHAR"  property="remarks"/>
         <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
         <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
     </resultMap>
     <insert id="addTag" parameterType="com.kaung.pogo.Tag">
-        insert into t_scene (scene_name, remarks, create_person,create_time) values (#{scene_name},#{remarks},#{create_person},#{create_time})
+        insert into t_tag (tag_name, remarks, create_person,create_time) values (#{tag_name},#{remarks},#{create_person},#{create_time})
     </insert>
 
     <delete id="deleteTagById" parameterType="int">
-        delete from t_scene where id = #{id};
+        delete from t_tag where id = #{id};
     </delete>
 
     <update id="updateTag" parameterType="com.kaung.pogo.Tag">
-        update t_scene set scene_name=#{scene_name} ,remarks=#{remarks},create_person=#{create_person},create_time=#{create_time}  where id =#{id}
+        update t_tag set tag_name=#{tag_name} ,remarks=#{remarks},create_person=#{create_person},create_time=#{create_time}  where id =#{id}
     </update>
 
 
     <select id="queryTagById" resultMap="TagResultMap">
-        select *from t_scene where id=#{id}
+        select * from t_tag where id=#{id}
     </select>
 
     <select id="queryAllTag" resultMap="TagResultMap">
@@ -33,12 +33,12 @@
     </select>
 
     <select id="queryTagByName" resultMap="TagResultMap">
-        select * from t_scene where scene_name=#{scene_name}
+        select * from t_tag where tag_name=#{tag_name}
     </select>
 
     <select id="queryTagVague" resultMap="TagResultMap" parameterType="com.kaung.pogo.QueryInfo">
-        select * from t_scene where 1=1
-        <if test="query != null"> and scene_name like '%${query}%'</if>
+        select * from t_tag where 1=1
+        <if test="query != null"> and tag_name like '%${query}%'</if>
     </select>
 
     <select id="queryTag" resultMap="TagResultMap">

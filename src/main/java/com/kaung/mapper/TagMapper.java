@@ -21,4 +21,6 @@ public interface TagMapper {
     Tag queryTagByName(String name);
 
     List<Tag> queryTag();
+
+    List<Tag> queryTagVague(QueryInfo queryInfo);
 }

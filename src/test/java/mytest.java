@@ -41,6 +41,15 @@ public class mytest {
 
 
     }
+
+    @Test
+    public void getdatasetbyid(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DatasetsService DatasetsService = (DatasetsService) context.getBean("DatasetsServiceImpl");
+        Datasets admin = DatasetsService.queryDatasetsById(6);
+        System.out.println(admin);
+
+    }
     @Test
     public void queryUservaguetext(){
         QueryInfo queryInfo = new QueryInfo();
@@ -87,6 +96,59 @@ public class mytest {
         }
     }
 
+    @Test
+    public void addaudit(){
+        Audit Audit = new Audit();
+        Audit.setId(6);
+        Audit.setDataset_id(0);
+        Audit.setDataset_name("Beijing");
+        Audit.setSize(50000);
+        Audit.setPurpose("asfsafgasg");
+        Audit.setModifier("admin");
+        Audit.setModify_time("2021-08-17 11:31:54");
+        Audit.setStatus("未审核");
+        Audit.setRemark("gasdgfaf");
+        Audit.setAuditor(null);
+        Audit.setAudit_time(null);
+        Audit.setPath("asfas");
+        Audit.setRecorder("asfasf");
+        Audit.setRecord_place("safasf");
+        Audit.setRecord_time("safasfsa");
+        Audit.setCreate_time("2021-08-17 11:31:54");
+        Audit.setCreate_person("fsaf");
+        Audit.setType("修改数据集");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        AuditService AuditService = (AuditService) context.getBean("AuditServiceImpl");
+        AuditService.addAudit(Audit);
+
+    }
+    @Test
+    public void updateaudit(){
+        Audit Audit = new Audit();
+        Audit.setId(6);
+        Audit.setDataset_id(0);
+        Audit.setDataset_name("Beijing");
+        Audit.setSize(50000);
+        Audit.setPurpose("asfsafgasg");
+        Audit.setModifier("admin");
+        Audit.setModify_time("2021-08-17 11:31:54");
+        Audit.setStatus("未审核");
+        Audit.setRemark("gasdgfaf");
+        Audit.setAuditor(null);
+        Audit.setAudit_time(null);
+        Audit.setPath("asfas");
+        Audit.setRecorder("asfasf");
+        Audit.setRecord_place("safasf");
+        Audit.setRecord_time("safasfsa");
+        Audit.setCreate_time("2021-08-17 11:31:54");
+        Audit.setCreate_person("fsaf");
+        Audit.setType("修改数据集");
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        AuditService AuditService = (AuditService) context.getBean("AuditServiceImpl");
+        AuditService.addAudit(Audit);
+
+    }
+
 
 
     @Test
@@ -103,7 +165,11 @@ public class mytest {
     public void queryTagtext(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TagService TagService = (TagService) context.getBean("TagServiceImpl");
-        for (Tag Tag : TagService.queryTag()) {
+        QueryInfo queryInfo = new QueryInfo();
+        queryInfo.setQuery("1");
+        queryInfo.setPageSize(5);
+        queryInfo.setPageNumber(1);
+        for (Tag Tag : TagService.queryTagVague(queryInfo)) {
             System.out.println(Tag);
         }
     }
