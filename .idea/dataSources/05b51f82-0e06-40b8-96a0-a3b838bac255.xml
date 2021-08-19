@@ -1220,265 +1220,260 @@ SELECT|sys.sys_config
       <Position>12</Position>
       <DataType>int|0s</DataType>
     </column>
-    <key id="367" parent="297" name="PRIMARY">
+    <column id="367" parent="297" name="path">
+      <Position>13</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <key id="368" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="368" parent="298" name="id">
+    <column id="369" parent="298" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="369" parent="298" name="dataset_id">
+    <column id="370" parent="298" name="dataset_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="370" parent="298" name="classification_id">
+    <column id="371" parent="298" name="create_person">
       <Position>3</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="371" parent="298" name="scene_id">
-      <Position>4</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="372" parent="298" name="create_person">
-      <Position>5</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="373" parent="298" name="create_time">
-      <Position>6</Position>
+    <column id="372" parent="298" name="create_time">
+      <Position>4</Position>
       <DataType>varchar(19)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="374" parent="298" name="path">
-      <Position>7</Position>
-      <DataType>varchar(32)|0s</DataType>
-    </column>
-    <column id="375" parent="298" name="target_id">
-      <Position>8</Position>
-      <DataType>varchar(32)|0s</DataType>
-    </column>
-    <key id="376" parent="298" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="377" parent="299" name="id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="378" parent="299" name="class_id_id">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="379" parent="299" name="frame_id">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <key id="380" parent="299" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="381" parent="300" name="id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="382" parent="300" name="scene_id_id">
-      <Position>2</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="383" parent="300" name="frame_id">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <key id="384" parent="300" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="385" parent="301" name="id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="386" parent="301" name="record_path">
-      <Position>2</Position>
-      <DataType>varchar(32)|0s</DataType>
-    </column>
-    <column id="387" parent="301" name="class_refer">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="388" parent="301" name="scene_refer">
-      <Position>4</Position>
-      <DataType>int|0s</DataType>
-    </column>
-    <column id="389" parent="301" name="user">
+    <column id="373" parent="298" name="path">
       <Position>5</Position>
       <DataType>varchar(32)|0s</DataType>
     </column>
-    <column id="390" parent="301" name="use_time">
+    <column id="374" parent="298" name="target_id">
       <Position>6</Position>
-      <DataType>varchar(11)|0s</DataType>
+      <DataType>varchar(32)|0s</DataType>
     </column>
-    <key id="391" parent="301" name="PRIMARY">
+    <key id="375" parent="298" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="392" parent="302" name="id">
+    <column id="376" parent="299" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="393" parent="302" name="scene_name">
+    <column id="377" parent="299" name="class_id_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="378" parent="299" name="frame_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <key id="379" parent="299" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="380" parent="300" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="381" parent="300" name="scene_id_id">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="382" parent="300" name="frame_id">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <key id="383" parent="300" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="384" parent="301" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="385" parent="301" name="record_path">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+    </column>
+    <column id="386" parent="301" name="class_refer">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="387" parent="301" name="scene_refer">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="388" parent="301" name="user">
+      <Position>5</Position>
+      <DataType>varchar(32)|0s</DataType>
+    </column>
+    <column id="389" parent="301" name="use_time">
+      <Position>6</Position>
+      <DataType>varchar(11)|0s</DataType>
+    </column>
+    <key id="390" parent="301" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="391" parent="302" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="392" parent="302" name="scene_name">
       <Position>2</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="394" parent="302" name="remarks">
+    <column id="393" parent="302" name="remarks">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
     </column>
-    <column id="395" parent="302" name="create_person">
+    <column id="394" parent="302" name="create_person">
       <Position>4</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="396" parent="302" name="create_time">
+    <column id="395" parent="302" name="create_time">
       <Position>5</Position>
       <DataType>varchar(19)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="397" parent="302" name="PRIMARY">
+    <key id="396" parent="302" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="398" parent="303" name="id">
+    <column id="397" parent="303" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="399" parent="303" name="tag_name">
+    <column id="398" parent="303" name="tag_name">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
     </column>
-    <column id="400" parent="303" name="create_person">
+    <column id="399" parent="303" name="create_person">
       <Position>3</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="401" parent="303" name="create_time">
+    <column id="400" parent="303" name="create_time">
       <Position>4</Position>
       <DataType>varchar(19)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="402" parent="303" name="remarks">
+    <column id="401" parent="303" name="remarks">
       <Position>5</Position>
       <DataType>varchar(32)|0s</DataType>
     </column>
-    <key id="403" parent="303" name="PRIMARY">
+    <key id="402" parent="303" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="404" parent="304" name="id">
+    <column id="403" parent="304" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="405" parent="304" name="tag_id">
+    <column id="404" parent="304" name="tag_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="406" parent="304" name="frame_id">
+    <column id="405" parent="304" name="frame_id">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <key id="407" parent="304" name="PRIMARY">
+    <key id="406" parent="304" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="408" parent="305" name="id">
+    <column id="407" parent="305" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="409" parent="305" name="cam_id">
+    <column id="408" parent="305" name="cam_id">
       <Position>2</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="410" parent="305" name="type">
+    <column id="409" parent="305" name="type">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="411" parent="305" name="effective_frames">
+    <column id="410" parent="305" name="effective_frames">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="412" parent="305" name="create_person">
+    <column id="411" parent="305" name="create_person">
       <Position>5</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="413" parent="305" name="create_time">
+    <column id="412" parent="305" name="create_time">
       <Position>6</Position>
       <DataType>varchar(19)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="414" parent="305" name="update_person">
+    <column id="413" parent="305" name="update_person">
       <Position>7</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="415" parent="305" name="update_time">
+    <column id="414" parent="305" name="update_time">
       <Position>8</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="416" parent="305" name="PRIMARY">
+    <key id="415" parent="305" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="417" parent="306" name="id">
+    <column id="416" parent="306" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="418" parent="306" name="name">
+    <column id="417" parent="306" name="name">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
     </column>
-    <column id="419" parent="306" name="password">
+    <column id="418" parent="306" name="password">
       <Position>3</Position>
       <DataType>varchar(32)|0s</DataType>
     </column>
-    <column id="420" parent="306" name="status">
+    <column id="419" parent="306" name="status">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <key id="421" parent="306" name="PRIMARY">
+    <key id="420" parent="306" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

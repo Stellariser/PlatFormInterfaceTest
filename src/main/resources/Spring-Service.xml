@@ -53,6 +53,16 @@
         <property name="AuditMapper" ref="auditMapper"/>
     </bean>
 
+    <bean id="FrameToClassServiceImpl" class="com.kaung.service.FrameToClassServiceImpl">
+        <property name="FrameToClassMapper" ref="frameToClassMapper"/>
+    </bean>
+    <bean id="FrameToSceneServiceImpl" class="com.kaung.service.FrameToSceneServiceImpl">
+        <property name="FrameToSceneMapper" ref="frameToSceneMapper"/>
+    </bean>
+    <bean id="TagToFrameServiceImpl" class="com.kaung.service.TagToFrameServiceImpl">
+        <property name="TagToFrameMapper" ref="tagToFrameMapper"/>
+    </bean>
+
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->

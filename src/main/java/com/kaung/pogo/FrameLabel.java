@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 public class FrameLabel {
     private int id;
     private int frame_id;
+    private int classification_id;
+    private int scene_id;
     private int left_point_x;
     private int left_point_y;
     private int right_point_x;
@@ -18,6 +20,49 @@ public class FrameLabel {
     private int centre_point_y;
     private int width;
     private int height;
+    private String path;
+    private String class_name;
+    private String scene_name;
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
+    }
+
+    public String getScene_name() {
+        return scene_name;
+    }
+
+    public void setScene_name(String scene_name) {
+        this.scene_name = scene_name;
+    }
+
+    public int getClassification_id() {
+        return classification_id;
+    }
+
+    public void setClassification_id(int classification_id) {
+        this.classification_id = classification_id;
+    }
+
+    public int getScene_id() {
+        return scene_id;
+    }
+
+    public void setScene_id(int scene_id) {
+        this.scene_id = scene_id;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     public int getId() {
         return id;

@@ -3,11 +3,10 @@ package com.kaung.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.kaung.pogo.Audit;
-import com.kaung.pogo.Datasets;
-import com.kaung.pogo.QueryInfo;
-import com.kaung.pogo.User;
+import com.kaung.pogo.*;
 import com.kaung.service.AuditService;
+import com.kaung.service.FrameProperityService;
+import com.kaung.vo.FrameAddForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +26,28 @@ public class AuditController {
     @Qualifier("DatasetsServiceImpl")
     private com.kaung.service.DatasetsService DatasetsService ;
 
+    @Autowired
+    @Qualifier("FrameProperityServiceImpl")
+    private com.kaung.service.FrameProperityService FrameProperityService ;
+
+    @Autowired
+    @Qualifier("FrameToClassServiceImpl")
+    private com.kaung.service.FrameToClassService FrameToClassService ;
+    @Autowired
+    @Qualifier("FrameToSceneServiceImpl")
+    private com.kaung.service.FrameToSceneService FrameToSceneService ;
+    @Autowired
+    @Qualifier("TagToFrameServiceImpl")
+    private com.kaung.service.TagToFrameService TagToFrameService ;
+    @Autowired
+    @Qualifier("DatasetToClasscificationServiceImpl")
+    private com.kaung.service.DatasetToClasscificationService DatasetToClasscificationService ;
+    @Autowired
+    @Qualifier("DatasetToSceneServiceImpl")
+    private com.kaung.service.DatasetToSceneService DatasetToSceneService ;
+    @Autowired
+    @Qualifier("FrameLabelServiceImpl")
+    private com.kaung.service.FrameLabelService FrameLabelService ;
 
     @RequestMapping(value = "/addDatasetAudit", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
     @ResponseBody
@@ -127,43 +148,43 @@ public class AuditController {
     public String addUser(@RequestBody Audit approveForm){
         String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         approveForm.setAudit_time(now);
-        Datasets d = new Datasets();
+        Datasets admin = new Datasets();
         if(approveForm.getType().equals("添加数据集")) {
-            d.setName(approveForm.getDataset_name());
-            d.setFrames(approveForm.getSize());
-            d.setRemarks(approveForm.getRemark());
-            d.setPurpose(approveForm.getPurpose());
-            d.setPath(approveForm.getPath());
-            d.setRecorder(approveForm.getRecorder());
-            d.setRecord_place(approveForm.getRecord_place());
-            d.setRecord_time(approveForm.getRecord_time());
-            d.setCreate_person(approveForm.getCreate_person());
-            d.setCreate_time(approveForm.getCreate_time());
-            d.setUpdate_person(approveForm.getAuditor());
-            d.setUpdate_time(approveForm.getAudit_time());
-            if (approveForm.getStatus().equals("未审核")) {
-                DatasetsService.addDatasets(d);
-            }
+            admin.setName(approveForm.getDataset_name());
+            admin.setFrames(approveForm.getSize());
+            admin.setRemarks(approveForm.getRemark());
+            admin.setPurpose(approveForm.getPurpose());
+            admin.setPath(approveForm.getPath());
+            admin.setRecorder(approveForm.getRecorder());
+            admin.setRecord_place(approveForm.getRecord_place());
+            admin.setRecord_time(approveForm.getRecord_time());
+            admin.setCreate_person(approveForm.getCreate_person());
+            admin.setCreate_time(approveForm.getCreate_time());
+            admin.setUpdate_person(approveForm.getAuditor());
+            admin.setUpdate_time(now);
+            admin.setId(0);
+            System.out.println(admin);
+            DatasetsService.addDatasets(admin);
         }
+        System.out.println("tyutrutrutr");
         if(approveForm.getType().equals("修改数据集")){
             System.out.println(approveForm);
-            d.setId(approveForm.getDataset_id());
-            d.setName(approveForm.getDataset_name());
-            d.setFrames(approveForm.getSize());
-            d.setRemarks(approveForm.getRemark());
-            d.setPurpose(approveForm.getPurpose());
-            d.setPath(approveForm.getPath());
-            d.setRecorder(approveForm.getRecorder());
-            d.setRecord_place(approveForm.getRecord_place());
-            d.setRecord_time(approveForm.getRecord_time());
-            d.setCreate_person(approveForm.getCreate_person());
-            d.setCreate_time(approveForm.getCreate_time());
-            d.setUpdate_person(approveForm.getModifier());
-            d.setUpdate_time(approveForm.getModify_time());
-            System.out.println(d);
-            if (approveForm.getStatus().equals("未审核")) {
-                DatasetsService.updateDatasets(d);
-            }
+            admin.setId(approveForm.getDataset_id());
+            admin.setName(approveForm.getDataset_name());
+            admin.setFrames(approveForm.getSize());
+            admin.setRemarks(approveForm.getRemark());
+            admin.setPurpose(approveForm.getPurpose());
+            admin.setPath(approveForm.getPath());
+            admin.setRecorder(approveForm.getRecorder());
+            admin.setRecord_place(approveForm.getRecord_place());
+            admin.setRecord_time(approveForm.getRecord_time());
+            admin.setCreate_person(approveForm.getCreate_person());
+            admin.setCreate_time(approveForm.getCreate_time());
+            admin.setUpdate_person(approveForm.getModifier());
+            admin.setUpdate_time(approveForm.getModify_time());
+            System.out.println(admin);
+            DatasetsService.updateDatasets(admin);
+            System.out.println(admin);
 
         }
         approveForm.setStatus("已审核");
@@ -190,15 +211,135 @@ public class AuditController {
         return JSONObject.toJSONString(resultMap);
     }
 
+    @RequestMapping(value = "/addFrameAudit", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin
+    public String addAudit(int datasetid,String classcification,String scene,String tag,String create_person,String create_time, String path,String target){
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        FrameAddForm frameAddForm = new FrameAddForm();
+        System.out.println(datasetid);
+        frameAddForm.setDatasetid(datasetid);
+        if(! classcification.equals("[]") ) {
+            classcification = classcification.replaceAll("\\[", "");
+            classcification = classcification.replaceAll("\\]", "");
+            String[] CS = classcification.split(",");
+            int[] CSI = new int [CS.length];
+            for(int i=0 ; i<CS.length;i++){ ;
+                CSI[i] = Integer.parseInt(CS[i]);
+            }
+            frameAddForm.setClasscification(CSI);
+        }else frameAddForm.setClasscification(null);
+        if(! scene.equals("[]") ) {
+            scene = scene.replaceAll("\\[", "");
+            scene = scene.replaceAll("\\]", "");
+            String[] SS = scene.split(",");
+            int[] SSI = new int [SS.length];
+            for(int i=0 ; i<SS.length;i++){ ;
+                SSI[i] = Integer.parseInt(SS[i]);
+            }
+            frameAddForm.setScene(SSI);
+        }else frameAddForm.setScene(null);
+        if(! tag.equals("[]") ) {
+            tag = tag.replaceAll("\\[", "");
+            tag = tag.replaceAll("\\]", "");
+            String[] TS = tag.split(",");
+            int[] TSI = new int [TS.length];
+            for(int i=0 ; i<TS.length;i++){ ;
+                TSI[i] = Integer.parseInt(TS[i]);
+            }
+            frameAddForm.setTag(TSI);
+        }else frameAddForm.setTag(null);
+        frameAddForm.setCreate_person(create_person);
+        frameAddForm.setCreate_time(now);
+        frameAddForm.setPath(path);
+        frameAddForm.setTarget(target);
+        System.out.println(frameAddForm.toString());
+        FrameProperityService.addFrameProperity(frameAddForm);
+        int frameid = FrameProperityService.getLastInsert();
+        System.out.println(frameid);
+        FrameToScene frameToScene = new FrameToScene();
+        frameToScene.setFrame_id(frameid);
+        if(frameAddForm.getScene()!=null){
+            int[] scenelist = frameAddForm.getScene();
 
+            for(int i=0;i<scenelist.length;i++){
+                frameToScene.setScene_id_id(scenelist[i]);
+                FrameToSceneService.addFrameToScene(frameToScene);
+            }
+        }
+        FrameToClass frameToClass = new FrameToClass();
+        frameToClass.setFrame_id(frameid);
+        if(frameAddForm.getClasscification()!=null){
+            int[] Classlist = frameAddForm.getClasscification();
 
+            for(int i=0;i<Classlist.length;i++){
+                frameToClass.setClass_id_id(Classlist[i]);
+                FrameToClassService.addFrameToClass(frameToClass);
+            }
+        }
+        TagToFrame tagToFrame =new TagToFrame();
+        tagToFrame.setFrame_id(frameid);
+        if(frameAddForm.getTag()!=null){
+            int[] taglist = frameAddForm.getTag();
+            for(int i=0;i<taglist.length;i++){
+                tagToFrame.setTag_id(taglist[i]);
+                TagToFrameService.addTagToFrame(tagToFrame);
+            }
+        }
+        DatasetToScene datasetToScene = new DatasetToScene();
+        datasetToScene.setDataset_id(frameAddForm.getDatasetid());
+        if(frameAddForm.getScene()!=null){
+            int[] scenelist = frameAddForm.getScene();
 
+            for(int i=0;i<scenelist.length;i++){
+                datasetToScene.setScene_id(scenelist[i]);
+                DatasetToSceneService.addDatasetToScene(datasetToScene);
+            }
+        }
+        DatasetToClasscification datasetToClasscification= new DatasetToClasscification();
+        datasetToClasscification.setDataset_id(frameAddForm.getDatasetid());
+        if(frameAddForm.getClasscification()!=null){
+            int[] Classlist = frameAddForm.getClasscification();
 
+            for(int i=0;i<Classlist.length;i++){
+                datasetToClasscification.setClasscification_id(Classlist[i]);
+                DatasetToClasscificationService.addDatasetToClasscification(datasetToClasscification);
+            }
+        }
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        resultMap.put("meta",meta);
+        meta.put("msg","用户创建成功");
+        meta.put("status","201");
+        return JSONObject.toJSONString(resultMap);
+    }
 
-
-
-
-
+    @RequestMapping(value = "/addLabelAudit", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
+    @ResponseBody
+    @CrossOrigin
+    public String addAudit(@RequestBody FrameLabel addForm){
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        FrameLabel frameLabel = new FrameLabel();
+        frameLabel.setFrame_id(addForm.getFrame_id());
+        frameLabel.setScene_id(addForm.getScene_id());
+        frameLabel.setClassification_id(addForm.getClassification_id());
+        frameLabel.setCentre_point_x(addForm.getCentre_point_x());
+        frameLabel.setCentre_point_y(addForm.getCentre_point_y());
+        frameLabel.setLeft_point_x(addForm.getLeft_point_x());
+        frameLabel.setLeft_point_y(addForm.getLeft_point_y());
+        frameLabel.setRight_point_x(addForm.getRight_point_x());
+        frameLabel.setRight_point_y(addForm.getRight_point_y());
+        frameLabel.setPath(addForm.getPath());
+        frameLabel.setHeight(addForm.getHeight());
+        frameLabel.setWidth(addForm.getWidth());
+        FrameLabelService.addFrameLabel(frameLabel);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        resultMap.put("meta",meta);
+        meta.put("msg","用户创建成功");
+        meta.put("status","201");
+        return JSONObject.toJSONString(resultMap);
+    }
 
 
 

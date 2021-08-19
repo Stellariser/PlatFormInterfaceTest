@@ -1,5 +1,6 @@
 import com.kaung.pogo.*;
 import com.kaung.service.*;
+import com.kaung.vo.FrameAddForm;
 import com.kaung.vo.ProperityQueryInfo;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -148,7 +149,18 @@ public class mytest {
         AuditService.addAudit(Audit);
 
     }
-
+    @Test
+    public void addFramettext(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameProperityService FrameProperityService = (com.kaung.service.FrameProperityService) context.getBean("FrameProperityServiceImpl");
+        FrameAddForm frameAddForm = new FrameAddForm();
+        frameAddForm.setTarget("dfghdfh");
+        frameAddForm.setPath("dfshd");
+        frameAddForm.setCreate_time("dfhdfh");
+        frameAddForm.setCreate_person("fdhfdh");
+        frameAddForm.setDatasetid(5);
+        FrameProperityService.addFrameProperity(frameAddForm);
+    }
 
 
     @Test
@@ -331,5 +343,97 @@ public class mytest {
 
     }
 
+    @Test
+    public void Totext1(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameToClassService FrameToClassService = (FrameToClassService) context.getBean("FrameToClassServiceImpl");
+        for (FrameToClass FrameToClass : FrameToClassService.queryAllFrameToClass()) {
+            System.out.println(FrameToClass);
+        }
 
+    }
+    @Test
+    public void Totext2(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameToSceneService FrameToSceneService = (FrameToSceneService) context.getBean("FrameToSceneServiceImpl");
+        for (FrameToScene FrameToScene : FrameToSceneService.queryAllFrameToScene()) {
+            System.out.println(FrameToScene);
+        }
+
+    }
+    @Test
+    public void Totext3(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        TagToFrameService TagToFrameService = (TagToFrameService) context.getBean("TagToFrameServiceImpl");
+        for (TagToFrame TagToFrame : TagToFrameService.queryAllTagToFrame()) {
+            System.out.println(TagToFrame);
+        }
+
+    }
+    @Test
+    public void Totextadd3(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        TagToFrameService TagToFrameService = (TagToFrameService) context.getBean("TagToFrameServiceImpl");
+        TagToFrame tagToFrame = new TagToFrame();
+        tagToFrame.setFrame_id(20);
+        tagToFrame.setTag_id(15);
+        TagToFrameService.addTagToFrame(tagToFrame);
+
+    }
+    @Test
+    public void Totextadd2(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameToSceneService FrameToSceneService = (FrameToSceneService) context.getBean("FrameToSceneServiceImpl");
+        FrameToScene frameToScene = new FrameToScene();
+        frameToScene.setFrame_id(20);
+        frameToScene.setScene_id_id(15);
+        FrameToSceneService.addFrameToScene(frameToScene);
+
+    }
+    @Test
+    public void Totextadd1(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameToClassService FrameToClassService = (FrameToClassService) context.getBean("FrameToClassServiceImpl");
+        FrameToClass frameToClass = new FrameToClass();
+        frameToClass.setClass_id_id(10);
+        frameToClass.setFrame_id(10);
+        FrameToClassService.addFrameToClass(frameToClass);
+
+    }
+    @Test
+    public void Totextlaber(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameLabelService FrameLabelService = (FrameLabelService) context.getBean("FrameLabelServiceImpl");
+        LabelQueryInfo LabelQueryInfo = new LabelQueryInfo();
+        LabelQueryInfo.setFrame_id(3);
+        LabelQueryInfo.setPageSize(10);
+        LabelQueryInfo.setPageNumber(1);
+        FrameLabelService.queryFrameLabelByName(LabelQueryInfo);
+        for (FrameLabel FrameLabel : FrameLabelService.queryFrameLabelByName(LabelQueryInfo)) {
+            System.out.println(FrameLabel);
+        }
+    }
+
+    @Test
+    public void adddataset(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        DatasetsService DatasetsService = (DatasetsService) context.getBean("DatasetsServiceImpl");
+        Datasets admin = new Datasets();
+        admin.setUpdate_time("fgdgdfg");
+        admin.setUpdate_person("fgdgdfg");
+        admin.setName("fgdgdfg");
+        admin.setFrames(200);
+        admin.setRemarks("fgdgdfg");
+        admin.setRecorder("fgdgdfg");
+        admin.setRecord_time("fgdgdfg");
+        admin.setRecord_place("fgdgdfg");
+        admin.setPath("fgdgdfg");
+        admin.setPurpose("fgdgdfg");
+        admin.setCreate_time("fgdgdfg");
+        admin.setCreate_person("fgdgdfg");
+        admin.setId(0);
+        System.out.println(admin.toString());
+        DatasetsService.addDatasets(admin);
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.pogo.FrameLabel;
+import com.kaung.pogo.LabelQueryInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,5 +18,5 @@ public interface FrameLabelService {
 
     List<FrameLabel> queryAllFrameLabel();
 
-    FrameLabel queryFrameLabelByName(String name);
+    List<FrameLabel> queryFrameLabelByName(LabelQueryInfo LabelQueryInfo);
 }

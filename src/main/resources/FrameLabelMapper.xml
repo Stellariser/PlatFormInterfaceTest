@@ -4,9 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kaung.mapper.FrameLabelMapper">
-
+    <resultMap id="FrameLabelResultMap" type="com.kaung.pogo.FrameLabel">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="frame_id" jdbcType="BIGINT"  property="frame_id"/>
+        <result column="classification_id" jdbcType="BIGINT"  property="classification_id"/>
+        <result column="scene_id" jdbcType="BIGINT"  property="scene_id"/>
+        <result column="left_point_x" jdbcType="BIGINT"  property="left_point_x"/>
+        <result column="left_point_y" jdbcType="BIGINT"  property="left_point_y"/>
+        <result column="right_point_x" jdbcType="BIGINT"  property="right_point_x"/>
+        <result column="right_point_y" jdbcType="BIGINT"  property="right_point_y"/>
+        <result column="centre_point_x" jdbcType="BIGINT"  property="centre_point_x"/>
+        <result column="centre_point_y" jdbcType="BIGINT"  property="centre_point_y"/>
+        <result column="width" jdbcType="BIGINT"  property="width"/>
+        <result column="height" jdbcType="BIGINT"  property="height"/>
+        <result column="path" jdbcType="VARCHAR"  property="path"/>
+        <result column="class_name" jdbcType="VARCHAR"  property="class_name"/>
+        <result column="scene_name" jdbcType="VARCHAR"  property="scene_name"/>
+    </resultMap>
     <insert id="addFrameLabel" parameterType="com.kaung.pogo.FrameLabel">
-        insert into t_frame_label (frame_id, left_point_x, left_point_y,right_point_x, right_point_y, centre_point_x, centre_point_y, width,height) values (#{frame_id},#{left_point_x},#{left_point_y},#{right_point_x},#{right_point_y},#{centre_point_x},#{centre_point_y},#{width},#{height})
+        insert into t_frame_label (frame_id, classification_id,scene_id,left_point_x, left_point_y,right_point_x, right_point_y, centre_point_x, centre_point_y, width,height,path) values (#{frame_id},#{classification_id},#{scene_id},#{left_point_x},#{left_point_y},#{right_point_x},#{right_point_y},#{centre_point_x},#{centre_point_y},#{width},#{height},#{path})
     </insert>
 
     <delete id="deleteFrameLabelById" parameterType="int">
@@ -14,20 +30,24 @@
     </delete>
 
     <update id="updateFrameLabel" parameterType="com.kaung.pogo.FrameLabel">
-        update t_frame_label set name=#{name} ,password=#{password},status=#{status}  where id =#{id}
+        update t_frame_label set frame_id=#{frame_id} ,classification_id=#{classification_id},scene_id=#{scene_id} ,left_point_x=#{left_point_x},left_point_y=#{left_point_y},right_point_x=#{right_point_x},right_point_y=#{right_point_y},centre_point_x=#{centre_point_x},centre_point_y=#{centre_point_y},width=#{width},height=#{height},path=#{path} where id =#{id}
     </update>
 
 
-    <select id="queryFrameLabelById" resultType="com.kaung.pogo.FrameLabel">
+    <select id="queryFrameLabelById" resultMap="FrameLabelResultMap">
         select *from t_frame_label where id=#{id}
     </select>
 
-    <select id="queryAllFrameLabel" resultType="com.kaung.pogo.FrameLabel">
+    <select id="queryAllFrameLabel" resultMap="FrameLabelResultMap">
         select * from t_frame_label
     </select>
 
-    <select id="queryFrameLabelByName" resultType="com.kaung.pogo.FrameLabel">
-        select * from t_frame_label where frame_id=#{frame_id}
+    <select id="queryFrameLabelByName" resultMap="FrameLabelResultMap" parameterType="com.kaung.pogo.LabelQueryInfo">
+        select l.id,l.left_point_x,l.left_point_y,l.right_point_x,l.right_point_y,l.centre_point_x,l.centre_point_y,l.width,l.height ,c.class_name,s.scene_name,l.frame_id,l.path from t_frame_label l
+        LEFT JOIN t_classcification c on l.classification_id = c.id
+        LEFT JOIN t_scene s on l.scene_id = s.id
+        LEFT JOIN t_frame_properity f on l.frame_id = f.id
+        where frame_id=#{frame_id}
     </select>
 
 </mapper>

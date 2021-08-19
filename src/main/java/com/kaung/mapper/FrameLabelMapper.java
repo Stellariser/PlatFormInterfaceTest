@@ -1,6 +1,7 @@
 package com.kaung.mapper;
 
 import com.kaung.pogo.FrameLabel;
+import com.kaung.pogo.LabelQueryInfo;
 import com.kaung.pogo.User;
 import org.springframework.stereotype.Component;
 
@@ -18,5 +19,5 @@ public interface FrameLabelMapper {
 
     List<FrameLabel> queryAllFrameLabel();
 
-    FrameLabel queryFrameLabelByName(String name);
+    List<FrameLabel> queryFrameLabelByName(LabelQueryInfo LabelQueryInfo);
 }

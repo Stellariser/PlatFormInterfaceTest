@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.kaung.pogo.Datasets;
-import com.kaung.pogo.FrameProperity;
-import com.kaung.pogo.QueryInfo;
-import com.kaung.pogo.Type;
+import com.kaung.pogo.*;
 import com.kaung.vo.ProperityQueryInfo;
 import org.bouncycastle.util.Integers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,10 @@ public class SearchController {
     @Autowired
     @Qualifier("FrameProperityServiceImpl")
     private com.kaung.service.FrameProperityService FrameProperityService ;
+
+    @Autowired
+    @Qualifier("FrameLabelServiceImpl")
+    private com.kaung.service.FrameLabelService FrameLabelService ;
 
 
     @RequestMapping(value = "/queryFrame", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
@@ -159,5 +160,34 @@ public class SearchController {
         return JSONObject.toJSONString(resultMap) ;
     }
 
-
+    @RequestMapping(value = "/queryLabel", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin
+    public String queryDatasetsVague(String VFString, int pageNumber, int pageSize){
+        //掉一个pagehelper调取分页数据
+        PageHelper.startPage(pageNumber,pageSize);
+        LabelQueryInfo LabelQueryInfo = new LabelQueryInfo();
+        LabelQueryInfo.setPageNumber(pageNumber);
+        LabelQueryInfo.setPageSize(pageSize);
+        if(! VFString.equals("[]") ) {
+            VFString = VFString.replaceAll("\\[", "");
+            VFString = VFString.replaceAll("\\]", "");
+            int a = Integer.parseInt(VFString);
+            LabelQueryInfo.setFrame_id(a);
+        }else LabelQueryInfo.setFrame_id(0);
+        List<FrameLabel> FrameLabel = FrameLabelService.queryFrameLabelByName(LabelQueryInfo);
+        PageInfo<FrameLabel> pageInfo = new PageInfo<>(FrameLabel);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> data = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        resultMap.put("data",data);
+        resultMap.put("meta",meta);
+        data.put("totalpage",pageInfo.getTotal());
+        data.put("pagenum",pageInfo.getPageNum());
+        data.put("Labels",pageInfo.getList());
+        meta.put("msg","获取成功");
+        meta.put("status","200");
+        //return pageInfo;
+        return JSONObject.toJSONString(resultMap) ;
+    }
 }

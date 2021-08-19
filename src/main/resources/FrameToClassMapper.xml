@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.FrameToClassMapper">
+
+    <insert id="addFrameToClass" parameterType="com.kaung.pogo.FrameToClass">
+        insert into t_frame_to_classcification (class_id_id, frame_id) values (#{class_id_id},#{frame_id})
+    </insert>
+
+    <delete id="deleteFrameToClassById" parameterType="int">
+        delete from t_frame_to_classcification where id = #{id};
+    </delete>
+
+    <update id="updateFrameToClass" parameterType="com.kaung.pogo.FrameToClass">
+        update t_frame_to_classcification set class_id_id=#{class_id_id} ,frame_id=#{frame_id} where id =#{id}
+    </update>
+
+
+    <select id="queryFrameToClassById" resultType="com.kaung.pogo.FrameToClass">
+        select *from t_frame_to_classcification where id=#{id}
+    </select>
+
+    <select id="queryAllFrameToClass" resultType="com.kaung.pogo.FrameToClass">
+        select * from t_frame_to_classcification
+    </select>
+
+    <select id="queryDatasetToSceneByName" resultType="com.kaung.pogo.DatasetToScene">
+        select * from t_frame_to_scene where class_id_id=#{class_id_id}
+    </select>
+
+    <select id="getLastInsert" resultType="int">
+        select LAST_INSERT_ID()
+    </select>
+
+</mapper>

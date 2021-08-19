@@ -2,6 +2,7 @@ package com.kaung.mapper;
 
 import com.kaung.pogo.FrameProperity;
 import com.kaung.pogo.User;
+import com.kaung.vo.FrameAddForm;
 import com.kaung.vo.ProperityQueryInfo;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Component
 public interface FrameProperityMapper {
-    int addFrameProperity(FrameProperity FrameProperity);
+    int addFrameProperity(FrameAddForm FrameAddForm);
 
     int deleteFrameProperityById(int id);
 
@@ -22,4 +23,6 @@ public interface FrameProperityMapper {
     FrameProperity queryFrameProperityByName(String name);
 
     List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo);
+
+    int getLastInsert();
 }

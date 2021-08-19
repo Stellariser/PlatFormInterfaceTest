@@ -2,6 +2,7 @@ package com.kaung.service;
 
 import com.kaung.mapper.FrameLabelMapper;
 import com.kaung.pogo.FrameLabel;
+import com.kaung.pogo.LabelQueryInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class FrameLabelServiceImpl implements FrameLabelService{
     }
 
     @Override
-    public FrameLabel queryFrameLabelByName(String name) {
-        return frameLabelMapper.queryFrameLabelByName(name);
+    public List<FrameLabel> queryFrameLabelByName(LabelQueryInfo LabelQueryInfo) {
+        return frameLabelMapper.queryFrameLabelByName(LabelQueryInfo);
     }
 }

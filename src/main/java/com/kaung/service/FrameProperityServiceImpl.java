@@ -2,6 +2,7 @@ package com.kaung.service;
 
 import com.kaung.mapper.FrameProperityMapper;
 import com.kaung.pogo.FrameProperity;
+import com.kaung.vo.FrameAddForm;
 import com.kaung.vo.ProperityQueryInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,8 +18,8 @@ public class FrameProperityServiceImpl implements FrameProperityService {
     }
 
     @Override
-    public int addFrameProperity(FrameProperity FrameProperity) {
-        return frameProperityMapper.addFrameProperity(FrameProperity);
+    public int addFrameProperity(FrameAddForm FrameAddForm) {
+        return frameProperityMapper.addFrameProperity(FrameAddForm);
     }
 
     @Override
@@ -49,5 +50,10 @@ public class FrameProperityServiceImpl implements FrameProperityService {
     @Override
     public List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo) {
         return frameProperityMapper.queryGlobalFrame(ProperityQueryInfo);
+    }
+
+    @Override
+    public int getLastInsert() {
+        return frameProperityMapper.getLastInsert();
     }
 }

@@ -24,6 +24,9 @@
         <mapper resource="TypeMapper.xml"/>
         <mapper resource="TagMapper.xml"/>
         <mapper resource="AuditMapper.xml"/>
+        <mapper resource="FrameToClassMapper.xml"/>
+        <mapper resource="FrameToSceneMapper.xml"/>
+        <mapper resource="TagToFrameMapper.xml"/>
     </mappers>
 
 </configuration>

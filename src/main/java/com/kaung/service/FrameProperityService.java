@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.pogo.FrameProperity;
+import com.kaung.vo.FrameAddForm;
 import com.kaung.vo.ProperityQueryInfo;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface FrameProperityService {
-    int addFrameProperity(FrameProperity FrameProperity);
+    int addFrameProperity(FrameAddForm FrameAddForm);
 
     int deleteFrameProperityById(int id);
 
@@ -21,4 +22,5 @@ public interface FrameProperityService {
     FrameProperity queryFrameProperityByName(String name);
 
     List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo);
+    int getLastInsert();
 }
