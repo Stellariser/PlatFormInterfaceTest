@@ -211,7 +211,7 @@ public class AuditController {
         return JSONObject.toJSONString(resultMap);
     }
 
-    
+
     @RequestMapping(value = "/addFrameAudit", produces = "text/html;charset=utf-8", method = RequestMethod.GET)
     @ResponseBody
     @CrossOrigin
@@ -337,7 +337,7 @@ public class AuditController {
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("meta",meta);
-        meta.put("msg","用户创建成功");
+        meta.put("msg","标签成功");
         meta.put("status","201");
         return JSONObject.toJSONString(resultMap);
     }

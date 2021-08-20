@@ -436,4 +436,41 @@ public class mytest {
         DatasetsService.addDatasets(admin);
 
     }
+
+    @Test
+    public void editFrame(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameProperityService FrameProperityService = (FrameProperityService) context.getBean("FrameProperityServiceImpl");
+        FrameProperity frameProperity = new FrameProperity();
+        frameProperity.setPath("afsaf");
+        frameProperity.setId(2);
+        frameProperity.setTarget_id("dasd");
+        FrameProperityService.updateFrameProperityInfo(frameProperity);
+    }
+    @Test
+    public void getFrame(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameLabelService FrameLabelService = (FrameLabelService) context.getBean("FrameLabelServiceImpl");
+
+        System.out.println(FrameLabelService.queryFrameLabelById(4));
+    }
+
+    @Test
+    public void Audit2text3(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        LabelAuditService LabelAuditService = (LabelAuditService) context.getBean("LabelAuditServiceImpl");
+        for (LabelAudit LabelAudit : LabelAuditService.queryAllLabelAudit()) {
+            System.out.println(LabelAudit);
+        }
+
+    }
+    @Test
+    public void Audit2text2(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        FrameAuditService FrameAuditService = (FrameAuditService) context.getBean("FrameAuditServiceImpl");
+        for (FrameAudit FrameAudit : FrameAuditService.queryAllFrameAudit()) {
+            System.out.println(FrameAudit);
+        }
+
+    }
 }

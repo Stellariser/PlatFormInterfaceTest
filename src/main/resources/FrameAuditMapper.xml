@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.FrameAuditMapper">
+
+    <resultMap id="FrameAuditResultMap" type="com.kaung.pogo.FrameAudit">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="frame_id" jdbcType="BIGINT"  property="frame_id"/>
+        <result column="dataset_id" jdbcType="BIGINT"  property="dataset_id"/>
+        <result column="create_person" jdbcType="VARCHAR"  property="create_person"/>
+        <result column="create_time" jdbcType="VARCHAR"  property="create_time"/>
+        <result column="path" jdbcType="VARCHAR"  property="path"/>
+        <result column="target_id" jdbcType="VARCHAR"  property="target_id"/>
+        <result column="auditor" jdbcType="VARCHAR"  property="auditor"/>
+        <result column="audit_time" jdbcType="VARCHAR"  property="audit_time"/>
+        <result column="type" jdbcType="VARCHAR"  property="type"/>
+    </resultMap>
+
+    <insert id="addFrameAudit" parameterType="com.kaung.pogo.Audit">
+        insert into t_frame_audit (frame_id, dataset_id, create_person,create_time, path, target_id, auditor, audit_time,type) values (#{frame_id},#{dataset_id},#{create_person},#{create_time},#{path},#{target_id},#{auditor},#{audit_time},#{type})
+    </insert>
+
+    <delete id="deleteFrameAuditById" parameterType="int">
+        delete from t_frame_audit where id = #{id};
+    </delete>
+
+    <update id="updateFrameAudit" parameterType="com.kaung.pogo.Audit">
+        update t_frame_audit set frame_id=#{frame_id} ,dataset_id=#{dataset_id},create_person=#{create_person},create_time=#{create_time},path=#{path},target_id=#{target_id},auditor=#{auditor},audit_time=#{audit_time},type=#{type} where id =#{id}
+    </update>
+
+
+    <select id="queryFrameAuditById" resultMap="FrameAuditResultMap">
+        select * from t_frame_audit a  where a.id=#{id}
+    </select>
+
+    <select id="queryAllFrameAudit" resultMap="FrameAuditResultMap">
+        select * from t_frame_audit
+    </select>
+
+    <select id="queryFrameAuditByName" resultMap="FrameAuditResultMap">
+        select * from t_frame_audit where frame_id=#{frame_id}
+    </select>
+
+</mapper>

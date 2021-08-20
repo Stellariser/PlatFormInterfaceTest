@@ -23,6 +23,12 @@ public class FrameProperity {
     private String name;
     private String TagConTent;
 
+    public FrameProperity(int id, String path, String target_id) {
+        this.id = id;
+        this.path = path;
+        this.target_id = target_id;
+    }
+
     public int getId() {
         return id;
     }

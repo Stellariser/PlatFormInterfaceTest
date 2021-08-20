@@ -56,4 +56,9 @@ public class FrameProperityServiceImpl implements FrameProperityService {
     public int getLastInsert() {
         return frameProperityMapper.getLastInsert();
     }
+
+    @Override
+    public int updateFrameProperityInfo(FrameProperity FrameProperity) {
+        return frameProperityMapper.updateFrameProperityInfo(FrameProperity);
+    }
 }

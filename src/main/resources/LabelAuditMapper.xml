@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.LabelAuditMapper">
+
+    <resultMap id="LabelAuditResultMap" type="com.kaung.pogo.LabelAudit">
+        <id column="id" jdbcType="BIGINT"  property="id"/>
+        <result column="label_id" jdbcType="BIGINT"  property="label_id"/>
+        <result column="frame_id" jdbcType="BIGINT"  property="frame_id"/>
+        <result column="classification_id" jdbcType="BIGINT"  property="classification_id"/>
+        <result column="scene_id" jdbcType="BIGINT"  property="scene_id"/>
+        <result column="left_point_x" jdbcType="BIGINT"  property="left_point_x"/>
+        <result column="left_point_y" jdbcType="BIGINT"  property="left_point_y"/>
+        <result column="right_point_x" jdbcType="BIGINT"  property="right_point_x"/>
+        <result column="right_point_y" jdbcType="BIGINT"  property="right_point_y"/>
+        <result column="centre_point_x" jdbcType="BIGINT"  property="centre_point_x"/>
+        <result column="centre_point_y" jdbcType="BIGINT"  property="centre_point_y"/>
+        <result column="width" jdbcType="BIGINT"  property="width"/>
+        <result column="height" jdbcType="BIGINT"  property="height"/>
+        <result column="path" jdbcType="VARCHAR"  property="path"/>
+        <result column="auditor" jdbcType="VARCHAR"  property="auditor"/>
+        <result column="audit_time" jdbcType="VARCHAR"  property="audit_time"/>
+        <result column="type" jdbcType="VARCHAR"  property="type"/>
+    </resultMap>
+
+    <insert id="addLabelAudit" parameterType="com.kaung.pogo.LabelAudit">
+        insert into t_label_audit (label_id, frame_id, classification_id,scene_id, left_point_x, left_point_y, right_point_x, right_point_y,centre_point_x, centre_point_y, width,height, path, auditor,audit_time,type) values
+                           (#{label_id},#{frame_id},#{classification_id},#{scene_id},#{left_point_x},#{left_point_y},#{right_point_x},#{right_point_y},#{centre_point_x},#{centre_point_y},#{width},#{height},#{path},#{auditor},#{audit_time},#{type})
+    </insert>
+
+    <delete id="deleteLabelAuditById" parameterType="int">
+        delete from t_label_audit where id = #{id};
+    </delete>
+
+    <update id="updateLabelAudit" parameterType="com.kaung.pogo.LabelAudit">
+        update t_label_audit set label_id=#{label_id} ,frame_id=#{frame_id},classification_id=#{classification_id},scene_id=#{scene_id},left_point_x=#{left_point_x},left_point_y=#{left_point_y},right_point_x=#{right_point_x},right_point_y=#{right_point_y},centre_point_x=#{centre_point_x},centre_point_y=#{centre_point_y},width=#{width},height=#{height},path=#{path},auditor=#{auditor},audit_time=#{audit_time},type=#{type} where id =#{id}
+    </update>
+
+
+    <select id="queryLabelAuditById" resultMap="LabelAuditResultMap">
+        select * from t_label_audit a  where a.id=#{id}
+    </select>
+
+    <select id="queryAllLabelAudit" resultMap="LabelAuditResultMap">
+        select * from t_label_audit
+    </select>
+
+    <select id="queryLabelAuditByName" resultMap="LabelAuditResultMap">
+        select * from t_label_audit where label_id=#{label_id}
+    </select>
+
+</mapper>

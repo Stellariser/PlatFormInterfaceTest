@@ -22,5 +22,8 @@ public interface FrameProperityService {
     FrameProperity queryFrameProperityByName(String name);
 
     List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo);
+
     int getLastInsert();
+
+    int updateFrameProperityInfo(FrameProperity FrameProperity);
 }

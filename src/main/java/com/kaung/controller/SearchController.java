@@ -156,6 +156,7 @@ public class SearchController {
         data.put("Frames",pageInfo.getList());
         meta.put("msg","获取成功");
         meta.put("status","200");
+        System.out.println(resultMap);
         //return pageInfo;
         return JSONObject.toJSONString(resultMap) ;
     }

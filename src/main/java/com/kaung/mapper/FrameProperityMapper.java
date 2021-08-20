@@ -25,4 +25,6 @@ public interface FrameProperityMapper {
     List<FrameProperity> queryGlobalFrame(ProperityQueryInfo ProperityQueryInfo);
 
     int getLastInsert();
+
+    int updateFrameProperityInfo(FrameProperity FrameProperity);
 }
