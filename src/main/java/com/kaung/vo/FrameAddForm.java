@@ -1,8 +1,15 @@
 package com.kaung.vo;
 
-import java.util.Arrays;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class FrameAddForm {
+    private int id;
     private int datasetid;
     private int[] classcification;
     private int[] scene;
@@ -11,19 +18,22 @@ public class FrameAddForm {
     private String create_time;
     private String path;
     private String target;
+    private int frame_id;
 
-    public FrameAddForm() {
+    public int getFrame_id() {
+        return frame_id;
     }
 
-    public FrameAddForm(int datasetid, int[] classcification, int[] scene, int[] tag, String create_person, String create_time, String path, String target) {
-        this.datasetid = datasetid;
-        this.classcification = classcification;
-        this.scene = scene;
-        this.tag = tag;
-        this.create_person = create_person;
-        this.create_time = create_time;
-        this.path = path;
-        this.target = target;
+    public void setFrame_id(int frame_id) {
+        this.frame_id = frame_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getDatasetid() {

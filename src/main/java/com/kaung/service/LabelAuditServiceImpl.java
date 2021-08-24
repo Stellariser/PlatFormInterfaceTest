@@ -3,6 +3,7 @@ package com.kaung.service;
 import com.kaung.mapper.FrameProperityMapper;
 import com.kaung.mapper.LabelAuditMapper;
 import com.kaung.pogo.LabelAudit;
+import com.kaung.vo.DenyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -43,5 +44,10 @@ public class LabelAuditServiceImpl implements LabelAuditService{
     @Override
     public LabelAudit queryLabelAuditByName(String name) {
         return labelAuditMapper.queryLabelAuditByName(name);
+    }
+
+    @Override
+    public int Deny(DenyForm denyForm) {
+        return labelAuditMapper.Deny(denyForm);
     }
 }

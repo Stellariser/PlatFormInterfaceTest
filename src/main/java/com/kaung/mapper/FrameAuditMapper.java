@@ -18,4 +18,5 @@ public interface FrameAuditMapper {
     List<FrameAudit> queryAllFrameAudit();
 
     FrameAudit queryFrameAuditByName(String name);
+
 }

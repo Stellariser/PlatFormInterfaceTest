@@ -2,6 +2,7 @@ package com.kaung.mapper;
 
 import com.kaung.pogo.Audit;
 import com.kaung.pogo.LabelAudit;
+import com.kaung.vo.DenyForm;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface LabelAuditMapper {
     List<LabelAudit> queryAllLabelAudit();
 
     LabelAudit queryLabelAuditByName(String name);
+
+    int Deny(DenyForm denyForm);
 }

@@ -31,7 +31,7 @@
     </delete>
 
     <update id="updateFrameProperity" parameterType="com.kaung.pogo.FrameProperity">
-        update t_frame_properity set dataset_id=#{dataset_id} ,classification_id=#{classification_id},scene_id=#{scene_id},create_person=#{create_person},create_time=#{create_time},path=#{path},target_id=#{target_id}  where id =#{id}
+        update t_frame_properity set dataset_id=#{dataset_id} ,create_person=#{create_person},create_time=#{create_time},path=#{path},target_id=#{target_id}  where id =#{id}
     </update>
     <update id="updateFrameProperityInfo" parameterType="com.kaung.pogo.FrameProperity">
         update t_frame_properity set path=#{path},target_id=#{target_id}  where id =#{id}
@@ -87,6 +87,9 @@
         c.class_name,
         d.`name`,
         t.tag_name,
+        GROUP_CONCAT(DISTINCT c.id) Classlist,
+        GROUP_CONCAT(DISTINCT s.id) Scenelist,
+        GROUP_CONCAT(DISTINCT t.id) Taglist,
         GROUP_CONCAT(DISTINCT c.class_name) ClassContent,
         GROUP_CONCAT(DISTINCT s.scene_name) SceneContent,
         GROUP_CONCAT(DISTINCT t.tag_name) TagContent

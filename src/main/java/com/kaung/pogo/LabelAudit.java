@@ -25,6 +25,33 @@ public class LabelAudit {
     private String auditor;
     private String audit_time;
     private String type;
+    private String classname;
+    private String scenename;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
+
+    public String getScenename() {
+        return scenename;
+    }
+
+    public void setScenename(String scenename) {
+        this.scenename = scenename;
+    }
 
     public int getId() {
         return id;

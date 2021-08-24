@@ -10,7 +10,7 @@
     </insert>
 
     <delete id="deleteTagToFrameById" parameterType="int">
-        delete from t_tag_to_frame where id = #{id};
+        delete from t_tag_to_frame where frame_id = #{frame_id};
     </delete>
 
     <update id="updateTagToFrame" parameterType="com.kaung.pogo.TagToFrame">

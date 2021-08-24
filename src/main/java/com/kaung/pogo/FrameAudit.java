@@ -18,6 +18,87 @@ public class FrameAudit {
     private String auditor;
     private String audit_time;
     private String type;
+    private String classcontent;
+    private String scenecontent;
+    private String tagcontent;
+    private String status;
+    private String classlist;
+    private String scenelist;
+    private String taglist;
+    private String update_person;
+    private String update_time;
+
+    public String getUpdate_person() {
+        return update_person;
+    }
+
+    public void setUpdate_person(String update_person) {
+        this.update_person = update_person;
+    }
+
+    public String getUpdate_time() {
+        return update_time;
+    }
+
+    public void setUpdate_time(String update_time) {
+        this.update_time = update_time;
+    }
+
+    public String getClasslist() {
+        return classlist;
+    }
+
+    public String getTaglist() {
+        return taglist;
+    }
+
+    public void setTaglist(String taglist) {
+        this.taglist = taglist;
+    }
+
+    public void setClasslist(String classlist) {
+        this.classlist = classlist;
+    }
+
+    public String getScenelist() {
+        return scenelist;
+    }
+
+    public void setScenelist(String scenelist) {
+        this.scenelist = scenelist;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTagcontent() {
+        return tagcontent;
+    }
+
+    public void setTagcontent(String tagcontent) {
+        this.tagcontent = tagcontent;
+    }
+
+    public String getClasscontent() {
+        return classcontent;
+    }
+
+    public void setClasscontent(String classcontent) {
+        this.classcontent = classcontent;
+    }
+
+    public String getScenecontent() {
+        return scenecontent;
+    }
+
+    public void setScenecontent(String scenecontent) {
+        this.scenecontent = scenecontent;
+    }
 
     public int getId() {
         return id;

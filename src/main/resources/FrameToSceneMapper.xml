@@ -10,7 +10,7 @@
     </insert>
 
     <delete id="deleteFrameToSceneById" parameterType="int">
-        delete from t_frame_to_scene where id = #{id};
+        delete from t_frame_to_scene where frame_id = #{frame_id};
     </delete>
 
     <update id="updateFrameToScene" parameterType="com.kaung.pogo.FrameToScene">

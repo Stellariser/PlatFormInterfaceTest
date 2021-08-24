@@ -10,7 +10,7 @@
     </insert>
 
     <delete id="deleteDatasetToClasscificationById" parameterType="int">
-        delete from t_dataset_to_classcification where id = #{id};
+        delete from t_dataset_to_classcification where dataset_id = #{dataset_id};
     </delete>
 
     <update id="updateDatasetToClasscification" parameterType="com.kaung.pogo.DatasetToClasscification">

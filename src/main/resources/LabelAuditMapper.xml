@@ -26,8 +26,8 @@
     </resultMap>
 
     <insert id="addLabelAudit" parameterType="com.kaung.pogo.LabelAudit">
-        insert into t_label_audit (label_id, frame_id, classification_id,scene_id, left_point_x, left_point_y, right_point_x, right_point_y,centre_point_x, centre_point_y, width,height, path, auditor,audit_time,type) values
-                           (#{label_id},#{frame_id},#{classification_id},#{scene_id},#{left_point_x},#{left_point_y},#{right_point_x},#{right_point_y},#{centre_point_x},#{centre_point_y},#{width},#{height},#{path},#{auditor},#{audit_time},#{type})
+        insert into t_label_audit (label_id, frame_id, classification_id,scene_id, left_point_x, left_point_y, right_point_x, right_point_y,centre_point_x, centre_point_y, width,height, path, auditor,audit_time,type,classname,scenename,status) values
+                           (#{label_id},#{frame_id},#{classification_id},#{scene_id},#{left_point_x},#{left_point_y},#{right_point_x},#{right_point_y},#{centre_point_x},#{centre_point_y},#{width},#{height},#{path},#{auditor},#{audit_time},#{type},#{classname},#{scenename},#{status})
     </insert>
 
     <delete id="deleteLabelAuditById" parameterType="int">
@@ -35,7 +35,7 @@
     </delete>
 
     <update id="updateLabelAudit" parameterType="com.kaung.pogo.LabelAudit">
-        update t_label_audit set label_id=#{label_id} ,frame_id=#{frame_id},classification_id=#{classification_id},scene_id=#{scene_id},left_point_x=#{left_point_x},left_point_y=#{left_point_y},right_point_x=#{right_point_x},right_point_y=#{right_point_y},centre_point_x=#{centre_point_x},centre_point_y=#{centre_point_y},width=#{width},height=#{height},path=#{path},auditor=#{auditor},audit_time=#{audit_time},type=#{type} where id =#{id}
+        update t_label_audit set label_id=#{label_id} ,frame_id=#{frame_id},classification_id=#{classification_id},scene_id=#{scene_id},left_point_x=#{left_point_x},left_point_y=#{left_point_y},right_point_x=#{right_point_x},right_point_y=#{right_point_y},centre_point_x=#{centre_point_x},centre_point_y=#{centre_point_y},width=#{width},height=#{height},path=#{path},auditor=#{auditor},audit_time=#{audit_time},type=#{type},classname=#{classname},scenename=#{scenename},status=#{status} where id =#{id}
     </update>
 
 
@@ -51,4 +51,7 @@
         select * from t_label_audit where label_id=#{label_id}
     </select>
 
+    <update id="Deny" parameterType="com.kaung.vo.DenyForm">
+        update t_label_audit set auditor=#{auditor},audit_time=#{audit_time},status=#{status} where id =#{id}
+    </update>
 </mapper>

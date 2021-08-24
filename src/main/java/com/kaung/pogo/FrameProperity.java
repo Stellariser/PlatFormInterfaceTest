@@ -22,11 +22,38 @@ public class FrameProperity {
     private String class_name;
     private String name;
     private String TagConTent;
+    private String Classlist;
+    private String Scenelist;
+    private String taglist;
 
     public FrameProperity(int id, String path, String target_id) {
         this.id = id;
         this.path = path;
         this.target_id = target_id;
+    }
+
+    public String getClasslist() {
+        return Classlist;
+    }
+
+    public void setClasslist(String classlist) {
+        Classlist = classlist;
+    }
+
+    public String getScenelist() {
+        return Scenelist;
+    }
+
+    public void setScenelist(String scenelist) {
+        Scenelist = scenelist;
+    }
+
+    public String getTaglist() {
+        return taglist;
+    }
+
+    public void setTaglist(String taglist) {
+        this.taglist = taglist;
     }
 
     public int getId() {

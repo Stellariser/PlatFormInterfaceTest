@@ -16,10 +16,17 @@
         <result column="auditor" jdbcType="VARCHAR"  property="auditor"/>
         <result column="audit_time" jdbcType="VARCHAR"  property="audit_time"/>
         <result column="type" jdbcType="VARCHAR"  property="type"/>
+        <result column="classcontent" jdbcType="VARCHAR"  property="classcontent"/>
+        <result column="scenecontent" jdbcType="VARCHAR"  property="scenecontent"/>
+        <result column="tagcontent" jdbcType="VARCHAR"  property="tagcontent"/>
+        <result column="status" jdbcType="VARCHAR"  property="status"/>
+        <result column="classlist" jdbcType="VARCHAR"  property="classlist"/>
+        <result column="scenelist" jdbcType="VARCHAR"  property="scenelist"/>
+        <result column="taglist" jdbcType="VARCHAR"  property="taglist"/>
     </resultMap>
 
     <insert id="addFrameAudit" parameterType="com.kaung.pogo.Audit">
-        insert into t_frame_audit (frame_id, dataset_id, create_person,create_time, path, target_id, auditor, audit_time,type) values (#{frame_id},#{dataset_id},#{create_person},#{create_time},#{path},#{target_id},#{auditor},#{audit_time},#{type})
+        insert into t_frame_audit (frame_id, dataset_id, create_person,create_time, path, target_id, auditor, audit_time,type,classcontent,scenecontent,tagcontent,status,classlist,scenelist,taglist,update_time,update_person) values (#{frame_id},#{dataset_id},#{create_person},#{create_time},#{path},#{target_id},#{auditor},#{audit_time},#{type},#{classcontent},#{scenecontent},#{tagcontent},#{status},#{classlist},#{scenelist}, #{taglist}, #{update_person}, #{update_time})
     </insert>
 
     <delete id="deleteFrameAuditById" parameterType="int">
@@ -27,7 +34,7 @@
     </delete>
 
     <update id="updateFrameAudit" parameterType="com.kaung.pogo.Audit">
-        update t_frame_audit set frame_id=#{frame_id} ,dataset_id=#{dataset_id},create_person=#{create_person},create_time=#{create_time},path=#{path},target_id=#{target_id},auditor=#{auditor},audit_time=#{audit_time},type=#{type} where id =#{id}
+        update t_frame_audit set frame_id=#{frame_id} ,dataset_id=#{dataset_id},create_person=#{create_person},create_time=#{create_time},path=#{path},target_id=#{target_id},auditor=#{auditor},audit_time=#{audit_time},type=#{type},classcontent=#{classcontent},scenecontent=#{scenecontent},tagcontent=#{tagcontent},status=#{status},classlist=#{classlist},scenelist=#{scenelist},taglist=#{taglist},update_person=#{update_person},update_time=#{update_time} where id =#{id}
     </update>
 
 

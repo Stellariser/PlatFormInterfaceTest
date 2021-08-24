@@ -10,7 +10,7 @@
     </insert>
 
     <delete id="deleteFrameToClassById" parameterType="int">
-        delete from t_frame_to_classcification where id = #{id};
+        delete from t_frame_to_classcification where frame_id = #{frame_id};
     </delete>
 
     <update id="updateFrameToClass" parameterType="com.kaung.pogo.FrameToClass">

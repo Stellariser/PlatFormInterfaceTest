@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.pogo.LabelAudit;
+import com.kaung.vo.DenyForm;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface LabelAuditService {
     List<LabelAudit> queryAllLabelAudit();
 
     LabelAudit queryLabelAuditByName(String name);
+
+    int Deny(DenyForm denyForm);
 }
