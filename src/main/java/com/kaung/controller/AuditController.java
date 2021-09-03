@@ -78,7 +78,7 @@ public class AuditController {
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("data",AuditService.queryAuditByName(addForm.getDataset_name()));
         resultMap.put("meta",meta);
-        meta.put("msg","用户创建成功");
+        meta.put("msg","数据集审核创建成功");
         meta.put("status","201");
         return JSONObject.toJSONString(resultMap);
     }
@@ -96,7 +96,7 @@ public class AuditController {
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("meta",meta);
-        meta.put("msg","用户创建成功");
+        meta.put("msg","修改数据集审核创建成功");
         meta.put("status","201");
         return JSONObject.toJSONString(resultMap);
     }
@@ -641,7 +641,7 @@ public class AuditController {
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("meta", meta);
-        meta.put("msg", "用户创建成功");
+        meta.put("msg", "添加帧审核创建成功");
         meta.put("status", "201");
         return JSONObject.toJSONString(resultMap);
     }
@@ -674,7 +674,7 @@ public class AuditController {
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("meta",meta);
-        meta.put("msg","标签成功");
+        meta.put("msg","添加标签审核成功");
         meta.put("status","201");
         return JSONObject.toJSONString(resultMap);
     }

@@ -158,4 +158,10 @@
     <select id="getLastInsert" resultType="int">
         select max(id) from t_frame_properity
     </select>
+
+    <select id="getFrameAmount" resultType="int">
+        select count(*) frame_amount
+        from
+            t_frame_properity
+    </select>
 </mapper>

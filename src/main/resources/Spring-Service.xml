@@ -7,7 +7,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/tx
@@ -69,7 +69,12 @@
     <bean id="LabelAuditServiceImpl" class="com.kaung.service.LabelAuditServiceImpl">
         <property name="LabelAuditMapper" ref="labelAuditMapper"/>
     </bean>
-
+    <bean id="SceneCountServiceImpl" class="com.kaung.service.SceneCountServiceImpl">
+        <property name="SceneCountMapper" ref="sceneCountMapper"/>
+    </bean>
+    <bean id="ClassCountServiceImpl" class="com.kaung.service.ClassCountServiceImpl">
+        <property name="ClassCountMapper" ref="classCountMapper"/>
+    </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据源-->

@@ -473,4 +473,20 @@ public class mytest {
         }
 
     }
+    @Test
+    public void getSceneCount(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        SceneCountService SceneCountService = (SceneCountService) context.getBean("SceneCountServiceImpl");
+        for (SceneCount SceneCount : SceneCountService.getSceneCount()) {
+            System.out.println(SceneCount);
+        }
+    }
+    @Test
+    public void getClassCount(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClassCountService ClassCountService = (ClassCountService) context.getBean("ClassCountServiceImpl");
+        for (ClassCount ClassCount : ClassCountService.getClassCount()) {
+            System.out.println(ClassCount);
+        }
+    }
 }

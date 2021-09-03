@@ -49,5 +49,7 @@
     <select id="queryFrameAuditByName" resultMap="FrameAuditResultMap">
         select * from t_frame_audit where frame_id=#{frame_id}
     </select>
-
+    <update id="Deny" parameterType="com.kaung.vo.DenyForm">
+        update t_frame_audit set auditor=#{auditor},audit_time=#{audit_time},status=#{status} where id =#{id}
+    </update>
 </mapper>

@@ -26,4 +26,6 @@ public interface FrameProperityService {
     int getLastInsert();
 
     int updateFrameProperityInfo(FrameProperity FrameProperity);
+
+    int getFrameAmount();
 }

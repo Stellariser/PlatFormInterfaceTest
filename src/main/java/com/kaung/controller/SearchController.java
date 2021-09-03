@@ -45,27 +45,6 @@ public class SearchController {
         System.out.println(VSString);
         System.out.println(VCString);
         System.out.println(VDString);
-        /*VSString = VSString.replaceAll("\\[", "");
-        VSString = VSString.replaceAll("\\]", "");
-        String[] VSS = VSString.split(",");
-        VCString = VCString.replaceAll("\\[", "");
-        VCString = VCString.replaceAll("\\]", "");
-        String[] VCS = VCString.split(",");
-        VDString = VDString.replaceAll("\\[", "");
-        VDString = VDString.replaceAll("\\]", "");
-        String[] VDS = VDString.split(",");
-        int[] VSSI = new int [VSS.length];
-        int[] VCSI = new int [VCS.length];
-        int[] VDSI = new int [VDS.length];
-        for(int i=0 ; i<VSS.length;i++){ ;
-            VSSI[i] = Integer.parseInt(VSS[i]);
-        }
-        for(int i=0 ; i<VCS.length;i++){ ;
-            VCSI[i] = Integer.parseInt(VCS[i]);
-        }
-        for(int i=0 ; i<VDS.length;i++){ ;
-            VDSI[i] = Integer.parseInt(VDS[i]);
-        }*/
         if(! VSString.equals("[]") ) {
             VSString = VSString.replaceAll("\\[", "");
             VSString = VSString.replaceAll("\\]", "");

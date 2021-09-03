@@ -2,6 +2,7 @@ package com.kaung.mapper;
 
 import com.kaung.pogo.Audit;
 import com.kaung.pogo.FrameAudit;
+import com.kaung.vo.DenyForm;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,5 +19,5 @@ public interface FrameAuditMapper {
     List<FrameAudit> queryAllFrameAudit();
 
     FrameAudit queryFrameAuditByName(String name);
-
+    int Deny(DenyForm denyForm);
 }

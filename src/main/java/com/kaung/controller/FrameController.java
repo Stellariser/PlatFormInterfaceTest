@@ -6,6 +6,7 @@ import com.kaung.pogo.Datasets;
 import com.kaung.pogo.FrameAudit;
 import com.kaung.pogo.FrameProperity;
 import com.kaung.service.FrameAuditService;
+import com.kaung.vo.DenyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -128,7 +129,7 @@ public class FrameController {
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("meta",meta);
-        meta.put("msg","修改成功");
+        meta.put("msg","修改帧审核提交成功");
         meta.put("status","200");
         return JSONObject.toJSONString(resultMap);
     }
@@ -227,7 +228,7 @@ public class FrameController {
         HashMap<String, Object> resultMap = new HashMap<>();
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("meta",meta);
-        meta.put("msg","修改成功");
+        meta.put("msg","删除帧申请提交成功");
         meta.put("status","200");
         return JSONObject.toJSONString(resultMap);
     }
@@ -262,4 +263,23 @@ public class FrameController {
         return JSONObject.toJSONString(resultMap);
     }
 */
+
+    @RequestMapping(value = "/denyframe" ,produces = "text/html;charset=utf-8", method =RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin
+    public String denyFrameAudit(int id,String tokenStr1){
+        DenyForm denyForm = new DenyForm();
+        String now = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        denyForm.setId(id);
+        denyForm.setAuditor(tokenStr1);
+        denyForm.setAudit_time(now);
+        denyForm.setStatus("已驳回");
+        FrameAuditService.Deny(denyForm);
+        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> meta = new HashMap<>();
+        resultMap.put("meta",meta);
+        meta.put("msg","驳回成功");
+        meta.put("status","200");
+        return JSONObject.toJSONString(resultMap);
+    }
 }

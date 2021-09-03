@@ -77,7 +77,7 @@ public class LabelController {
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("data",editForm);
         resultMap.put("meta",meta);
-        meta.put("msg","修改成功");
+        meta.put("msg","修改标签审核提交成功");
         meta.put("status","200");
         return JSONObject.toJSONString(resultMap);
     }
@@ -113,7 +113,7 @@ public class LabelController {
         HashMap<String, Object> meta = new HashMap<>();
         resultMap.put("data",editForm);
         resultMap.put("meta",meta);
-        meta.put("msg","修改成功");
+        meta.put("msg","删除审核提交成功");
         meta.put("status","200");
         return JSONObject.toJSONString(resultMap);
     }

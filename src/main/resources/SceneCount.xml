@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kaung.mapper.SceneCountMapper">
+    <resultMap id="SceneCountResultMap" type="com.kaung.pogo.SceneCount">
+        <result column="scene_name" jdbcType="VARCHAR"  property="scene_name"/>
+        <result column="scene_count" jdbcType="BIGINT"  property="scene_count"/>
+    </resultMap>
+
+    <select id="getSceneCount" resultMap="SceneCountResultMap">
+        select b.scene_name ,count(*) scene_count  from
+            (
+                SELECT l.id, s.scene_name,c.class_name from t_frame_label l
+                LEFT JOIN t_classcification c on c.id=l.classification_id
+                LEFT JOIN t_scene s on s.id = l.scene_id
+            ) b
+        GROUP BY b.scene_name
+    </select>
+
+</mapper>

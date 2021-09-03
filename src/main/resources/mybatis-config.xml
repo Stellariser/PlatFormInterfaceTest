@@ -29,6 +29,8 @@
         <mapper resource="TagToFrameMapper.xml"/>
         <mapper resource="FrameAuditMapper.xml"/>
         <mapper resource="LabelAuditMapper.xml"/>
+        <mapper resource="SceneCount.xml"/>
+        <mapper resource="ClassCount.xml"/>
     </mappers>
 
 </configuration>

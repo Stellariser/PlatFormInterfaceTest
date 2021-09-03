@@ -1,6 +1,7 @@
 package com.kaung.service;
 
 import com.kaung.pogo.FrameAudit;
+import com.kaung.vo.DenyForm;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface FrameAuditService {
     List<FrameAudit> queryAllFrameAudit();
 
     FrameAudit queryFrameAuditByName(String name);
+    int Deny(DenyForm denyForm);
 }

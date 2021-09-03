@@ -61,4 +61,9 @@ public class FrameProperityServiceImpl implements FrameProperityService {
     public int updateFrameProperityInfo(FrameProperity FrameProperity) {
         return frameProperityMapper.updateFrameProperityInfo(FrameProperity);
     }
+
+    @Override
+    public int getFrameAmount() {
+        return frameProperityMapper.getFrameAmount();
+    }
 }

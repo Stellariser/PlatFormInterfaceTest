@@ -3,6 +3,7 @@ package com.kaung.service;
 import com.kaung.mapper.DatasetToSceneMapper;
 import com.kaung.mapper.FrameAuditMapper;
 import com.kaung.pogo.FrameAudit;
+import com.kaung.vo.DenyForm;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -43,5 +44,10 @@ public class FrameAuditServiceImpl implements FrameAuditService{
     @Override
     public FrameAudit queryFrameAuditByName(String name) {
         return frameAuditMapper.queryFrameAuditByName(name);
+    }
+
+    @Override
+    public int Deny(DenyForm denyForm) {
+        return frameAuditMapper.Deny(denyForm);
     }
 }
