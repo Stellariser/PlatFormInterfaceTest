@@ -1,0 +1,211 @@
+CREATE TABLE t_cam_datasets (
+id int(11) NOT NULL AUTO_INCREMENT, # '主键',
+`name` varchar(32) NOT NULL, # '数据名称',
+frames int(11) DEFAULT 0, # ‘数据总量’,
+remarks varchar(200) DEFAULT NULL , # '备注',
+recorder varchar(32) not null,
+record_time varchar(32) not null,
+record_place varchar(32) not null,
+create_person varchar(32) NOT NULL , # '创建人员',
+create_time varchar(32) NOT NULL , # '创建时间',
+purpose varchar(32),#创建目的
+update_person varchar(32) not null,
+update_time varchar(32) not null,
+path varchar(32) not null,
+PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE t_frame_properity (
+id bigint(20) NOT NULL AUTO_INCREMENT , # '主键',
+dataset_id int(12) NOT NULL , # '数据集信息表名',
+create_person varchar(32) NOT NULL , # '创建人员',
+create_time varchar(19) NOT NULL , # '创建时间',
+path varchar(32),#路径 
+target_id int(12), #目标
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_frame_label (
+id bigint(20) NOT NULL AUTO_INCREMENT , # '主键',
+frame_id int(12) NOT NULL , # '帧名',
+classification_id int(12) NOT NULL , # '所属分类id', scene？ 
+scene_id int(12),#场景id
+left_point_x int(11) DEFAULT NULL , # ‘左上X坐标’,
+left_point_y int(11) DEFAULT NULL , # ‘左上Y坐标’,
+right_point_x int(11) DEFAULT NULL , # ‘右下X坐标’,
+right_point_y int(11) DEFAULT NULL , # ‘右下Y坐标’,
+centre_point_x int(11) DEFAULT NULL , # ‘中心点X坐标’,
+centre_point_y int(11) DEFAULT NULL , # ‘中心点Y坐标’,
+width int(11) DEFAULT NULL , # ‘宽度’,
+height int(11) DEFAULT NULL , # ‘高度’,
+path varchar(32),
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE t_classcification ( #有多少个类
+id int(11) NOT NULL AUTO_INCREMENT , # '主键',
+class_code int(11) NOT NULL , # '类别编码',
+class_name varchar(10) NOT NULL , # '类别名称',
+remarks varchar(200) DEFAULT NULL , # '备注',
+create_person varchar(32) NOT NULL , # '创建人员',
+create_time varchar(19) NOT NULL , # '创建时间',
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; #？
+
+
+CREATE TABLE t_scene ( #有多少个场景
+id int(11) NOT NULL AUTO_INCREMENT , # '主键',
+scene_name varchar(10) NOT NULL , # '场景名称',
+remarks varchar(200) DEFAULT NULL , # '备注',
+create_person varchar(32) NOT NULL , # '创建人员',
+create_time varchar(19) NOT NULL , # '创建时间',
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; #？
+
+
+CREATE TABLE t_recursive (
+id int(11) NOT NULL AUTO_INCREMENT ,#本次调用的名称
+record_path varchar(32) ,#调用的数据路径
+class_refer int(12) ,#调用涉及的类名称
+scene_refer int(12) ,#调用涉及的场景名称
+user varchar(32) ,#调用人员
+use_time varchar(11) ,#调用时间
+PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+Create table t_dataset_to_classcification(
+id int(11) Not NULL AUTO_INCREMENT,
+dataset_id int (11),
+classcification_id int (11),
+PRIMARY KEY (`id`)    
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+Create table t_dataset_to_scene(
+id int(11) Not NULL AUTO_INCREMENT,
+dataset_id int (11),
+scene_id int (11),
+PRIMARY KEY (`id`)    
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+Create table t_type(
+id int(12) NOT NULL AUTO_INCREMENT,
+cam_id int(12) not null,
+type int(12) not null,
+effective_frames int(32),
+create_person varchar(32) NOT NULL , # '创建人员',
+create_time varchar(19) NOT NULL , # '创建时间',
+update_person varchar(32) not null,
+update_time varchar(32) not null,
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table t_user(
+id int(12) NOT NULL AUTO_INCREMENT,
+name varchar(32),
+password varchar(32),
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table t_tag(
+id int(12) NOT NULL AUTO_INCREMENT,
+tag_name varchar(32),
+remarks varchar(32),
+create_person varchar(32) NOT NULL , # '创建人员',
+create_time varchar(19) NOT NULL , # '创建时间',
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+create table t_tag_to_frame(
+id int(12) NOT NULL AUTO_INCREMENT,
+tag_id int(12),
+frame_id int(12),
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+create table t_frame_to_classcification(
+id int(12) NOT NULL AUTO_INCREMENT,
+class_id_id int(12),
+frame_id int(12),
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table t_frame_to_scene(
+id int(12) NOT NULL AUTO_INCREMENT,
+scene_id_id int(12),
+frame_id int(12),
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table t_dataset_audit(
+id int(12) NOT NULL AUTO_INCREMENT,
+dataset_id int(12),
+dataset_name varchar(32),
+size int(32),
+purpose varchar(12),
+modifier varchar(32),
+modify_time varchar(32),
+status varchar(12),
+remark varchar(32),
+auditor varchar(32),
+audit_time varchar(32),
+path varchar(32),
+recorder varchar(32),
+record_time varchar(32),
+record_place varchar(32),
+create_time varchar(32),
+create_person varchar(32),
+type varchar(32),
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table t_frame_audit(
+id int(12) NOT NULL AUTO_INCREMENT,
+frame_id bigint(20) , # '主键',
+dataset_id int(12) NOT NULL , # '数据集信息表名',
+create_person varchar(32) NOT NULL , # '创建人员',
+create_time varchar(19) NOT NULL , # '创建时间',
+path varchar(32),#路径 
+target_id int(12), #目标
+auditor varchar(32),
+audit_time varchar(32),
+type varchar(32),
+classcontent varchar(32),
+scenecontent varchar(32),
+tagcontent varchar(32),
+status varchar(32),
+classlist varchar(32),
+scenelist varchar(32),
+taglist varchar(32),
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+create table t_label_audit(
+id int(12) NOT NULL AUTO_INCREMENT,
+label_id bigint(20) , # '主键',
+frame_id int(12) NOT NULL , # '帧名',
+classification_id int(12) NOT NULL , # '所属分类id', scene？ 
+scene_id int(12),#场景id
+left_point_x int(11) DEFAULT NULL , # ‘左上X坐标’,
+left_point_y int(11) DEFAULT NULL , # ‘左上Y坐标’,
+right_point_x int(11) DEFAULT NULL , # ‘右下X坐标’,
+right_point_y int(11) DEFAULT NULL , # ‘右下Y坐标’,
+centre_point_x int(11) DEFAULT NULL , # ‘中心点X坐标’,
+centre_point_y int(11) DEFAULT NULL , # ‘中心点Y坐标’,
+width int(11) DEFAULT NULL , # ‘宽度’,
+height int(11) DEFAULT NULL , # ‘高度’,
+path varchar(32),
+auditor varchar(32),
+audit_time varchar(32),
+type varchar(32),
+classname varchar(32),
+scenename varchar(32),
+status varchar(32),
+PRIMARY KEY (`id`)  
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
